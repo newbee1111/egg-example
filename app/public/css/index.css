@@ -1,0 +1,22 @@
+h1 {
+	margin: 60px;
+}
+ul {
+	margin: 20px;
+}
+ul li {
+	list-style-type: none;
+}
+* {
+	margin: 0;
+}
+span {
+	margin: 0 32px;
+}
+.left {
+	display: inline-block;
+	width: 500px;
+}
+.right {
+	margin-left: 30px;
+}
