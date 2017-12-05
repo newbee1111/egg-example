@@ -15,21 +15,29 @@ module.exports = appInfo => {
       ejs: 'ejs',
     },
   };
-  config.mysql = {
-    client: {
-      host: 'localhost',
-      port: '3306',
-      user: 'root',
-      password: '',
-      database: 'eggjs',
-    },
-    app: true, // 将mysql作为属性绑定到app对象上
-    agent: false,
-  };
+  // config.mysql = {
+  //   client: {
+  //     host: 'localhost',
+  //     port: '3306',
+  //     user: 'root',
+  //     password: '',
+  //     database: 'eggjs',
+  //   },
+  //   app: true, // 将mysql作为属性绑定到app对象上
+  //   agent: false,
+  // };
   config.security = {
     csrf: {
       enable: false,
     },
+  };
+  config.sequelize = {
+    dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
+    database: 'eggjs',
+    host: 'localhost',
+    port: '3306',
+    username: 'root',
+    password: '',
   };
   return config;
 };
