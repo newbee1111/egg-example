@@ -15,17 +15,6 @@ module.exports = appInfo => {
       ejs: 'ejs',
     },
   };
-  // config.mysql = {
-  //   client: {
-  //     host: 'localhost',
-  //     port: '3306',
-  //     user: 'root',
-  //     password: '',
-  //     database: 'eggjs',
-  //   },
-  //   app: true, // 将mysql作为属性绑定到app对象上
-  //   agent: false,
-  // };
   config.security = {
     csrf: {
       enable: false,
@@ -38,6 +27,15 @@ module.exports = appInfo => {
     port: '3306',
     username: 'root',
     password: '',
+  };
+  config.redis = {
+    client: {
+      host: '47.100.108.56',
+      port: 6379,
+      password: '123456',
+      db: '0',
+    },
+    agent: true,
   };
   return config;
 };
