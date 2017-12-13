@@ -12,7 +12,9 @@
 		"egg-sequelize": "^3.1.0",
 		"egg-session-redis": "^1.0.0",
 		"egg-view-ejs": "^2.0.0",
+		"jsonwebtoken": "^8.1.0",
 		"mysql2": "^1.5.1",
+		"objectid": "^3.2.1",
 		"redis": "^2.8.0"
 	},
 	"devDependencies": {

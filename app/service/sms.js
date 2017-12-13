@@ -3,7 +3,8 @@ const { SMSFunction } = require('../utils/sms');
 
 class SmsService extends Service {
   sendMessage(tel) {
-    SMSFunction(tel);
+    const validateCode = SMSFunction(tel);
+    return validateCode;
   }
 }
 
