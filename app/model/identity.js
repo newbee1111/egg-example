@@ -1,10 +1,10 @@
 module.exports = app => {
-  const { STRING, BOOLEAN, ENUM } = app.Sequelize;
+  const { STRING, INTEGER, BOOLEAN, ENUM } = app.Sequelize;
 
   const Identity = app.model.define(
     'bk_visitor_identity',
     {
-      id: { type: STRING(255), primaryKey: true },
+      id: { type: INTEGER, primaryKey: true },
       full_name: STRING(255),
       identity_card: STRING(255),
       identity_card_type: ENUM('0', '1', '2'),

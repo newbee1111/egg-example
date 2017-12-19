@@ -1,10 +1,10 @@
 module.exports = app => {
-  const { STRING, INTEGER, BOOLEAN } = app.Sequelize;
+  const { INTEGER, BOOLEAN } = app.Sequelize;
 
   const Reservation = app.model.define(
     'bk_visitor_reservation',
     {
-      id: { type: STRING(255), primaryKey: true },
+      id: { type: INTEGER, primaryKey: true },
       is_finished: BOOLEAN,
       reservation_number: INTEGER,
       is_deleted: BOOLEAN,

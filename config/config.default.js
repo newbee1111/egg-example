@@ -1,5 +1,4 @@
 'use strict';
-
 module.exports = appInfo => {
   const config = (exports = {});
 
@@ -30,7 +29,7 @@ module.exports = appInfo => {
   };
   config.redis = {
     client: {
-      host: 'your redis server',
+      host: 'Your redis server host',
       port: 6379,
       password: '123456',
       db: '0',

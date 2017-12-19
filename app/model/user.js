@@ -1,4 +1,4 @@
-const ObjectId = require('objectid');
+const { generateId } = require('../utils/generateId');
 
 module.exports = app => {
   const { STRING, INTEGER, BOOLEAN } = app.Sequelize;
@@ -6,7 +6,7 @@ module.exports = app => {
   const User = app.model.define(
     'bk_visitor_user',
     {
-      id: { type: STRING(255), primaryKey: true },
+      id: { type: INTEGER, primaryKey: true },
       cellphone: STRING(255),
       credit: INTEGER,
       is_banned: BOOLEAN,
@@ -18,10 +18,10 @@ module.exports = app => {
   );
 
   User.getOrCreateUser = function* (cellphone) {
-    const user = yield this.findOne({ cellphone });
+    const user = yield this.findOne({}, { where: { cellphone } });
     if (!user) {
       const user_id = yield this.create({
-        id: ObjectId().toString(),
+        id: parseInt(generateId()),
         cellphone,
         credit: 100,
         is_banned: false,

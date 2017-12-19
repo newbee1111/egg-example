@@ -1,10 +1,10 @@
 module.exports = app => {
-  const { STRING, BOOLEAN } = app.Sequelize;
+  const { INTEGER, BOOLEAN } = app.Sequelize;
 
   const BindIdentity = app.model.define(
     'bk_visitor_binding_identity',
     {
-      id: { type: STRING(255), primaryKey: true },
+      id: { type: INTEGER, primaryKey: true },
       is_main: BOOLEAN,
       is_delete: BOOLEAN,
     },

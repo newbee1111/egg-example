@@ -1,7 +1,7 @@
 const SMSClient = require('@alicloud/sms-sdk');
 const { getRandomNumber } = require('../utils/random');
 // ACCESS_KEY_ID/ACCESS_KEY_SECRET 根据实际申请的账号信息进行替换
-const accessKeyId = 'your accessKeyId';
+const accessKeyId = 'Your accessKeyId';
 const secretAccessKey = 'your secretAccessKey';
 // 初始化sms_client
 const smsClient = new SMSClient({ accessKeyId, secretAccessKey });

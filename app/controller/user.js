@@ -23,7 +23,9 @@ class UserController extends Controller {
     const now = getNowSeconds();
     if (expireTime > now) {
       const user = yield this.ctx.service.user.registryOrLogin(tel);
-      const token = jwt.sign({ tel }, 'secret', { expiresIn: '14d' });
+      const token = jwt.sign({ tel }, 'secret', { expiresIn: '10s' });
+      const { id } = user;
+      yield this.app.sessionStore.set(id, user);
       this.ctx.response.body = { success: true, token, user };
     } else {
       this.ctx.response.body = { success: false };
@@ -33,13 +35,24 @@ class UserController extends Controller {
   * tokenVerify() {
     const { token } = this.ctx.request.body;
     const decoded = jwt.decode(token, 'secret');
-    const { iat, exp, tel } = decoded;
-    if (iat <= exp) {
+    const { exp, tel } = decoded;
+    const now = getNowSeconds();
+    if (now <= exp) {
       const user = yield this.ctx.service.user.registryOrLogin(tel);
+      const { id } = user;
+      yield this.app.sessionStore.set(id, user);
       this.ctx.response.body = { success: true, user };
     } else {
       this.ctx.response.body = { success: false };
     }
+  }
+
+  * cleanSession() {
+    const { id } = this.ctx.user;
+    yield this.app.sessionStore.destroy(id);
+    // 检测session是否已经删除
+    const testRes = yield this.app.sessionStore.get(id);
+    console.log(testRes);
   }
 }
 

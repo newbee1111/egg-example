@@ -18,45 +18,8 @@
     <input type="text" name="text" value="" id="validateCode">
     <input type="button" name="submit" value="登录" id="submit">
   </form>
-  <script type="text/javascript" src="public/js/jquery-1.8.2.min.js" ></script>
-  <script type="text/javascript" src="public/js/loginVerify.js"></script>
-  <script>
-    $(document).ready(function(){
-      var token = localStorage.getItem('token');
-      if(token){
-        $.ajax({
-          url:'/token',
-          type:'post',
-          dataType:'json',
-          data: { token },
-          success(mes){
-            console.log(mes)
-          }
-        })
-      }else {
-        $("#getMes").click(function(){
-          var tel = $("#telephone").val();
-          if(!tel){
-            alert('please input your phone');
-            return;
-          }
-          $.ajax({
-            type:'post',
-            url:'/getMes',
-            data: { tel },
-            dataType: 'json',
-            success: function(mes){
-              console.log(mes)
-              var tel = $("#telephone");
-              var validateCode = $("#validateCode");
-              var submitBtn = $("#submit");
-              loginVerify(tel,validateCode,submitBtn, mes);
-            }
-          })
-        });
-      }
-    })
-  </script>
+  <script type="text/javascript" src="/public/js/jquery-1.8.2.min.js" ></script>
+  <script type="text/javascript" src="/public/js/loginVerify.js"></script>
 </body>
 
 </html>
