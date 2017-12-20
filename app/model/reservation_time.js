@@ -1,10 +1,10 @@
 module.exports = app => {
-  const { INTEGER, BOOLEAN, DATE } = app.Sequelize;
+  const { INTEGER, BOOLEAN, DATE, BIGINT } = app.Sequelize;
 
   const ReservationTime = app.model.define(
     'bk_visitor_reservation_time',
     {
-      id: { type: INTEGER, primaryKey: true },
+      id: { type: BIGINT, primaryKey: true },
       time_start: DATE,
       time_end: DATE,
       number: INTEGER,

@@ -23,10 +23,11 @@ class UserController extends Controller {
     const now = getNowSeconds();
     if (expireTime > now) {
       const user = yield this.ctx.service.user.registryOrLogin(tel);
-      const token = jwt.sign({ tel }, 'secret', { expiresIn: '10s' });
+      const token = jwt.sign({ tel }, 'secret', { expiresIn: '1d' });
       const { id } = user;
       yield this.app.sessionStore.set(id, user);
-      this.ctx.response.body = { success: true, token, user };
+      const bind = yield this.ctx.service.user.mainIdentityCheck(id);
+      this.ctx.response.body = { success: true, token, user, bind };
     } else {
       this.ctx.response.body = { success: false };
     }
@@ -41,7 +42,8 @@ class UserController extends Controller {
       const user = yield this.ctx.service.user.registryOrLogin(tel);
       const { id } = user;
       yield this.app.sessionStore.set(id, user);
-      this.ctx.response.body = { success: true, user };
+      const bind = yield this.ctx.service.user.mainIdentityCheck(id);
+      this.ctx.response.body = { success: true, user, bind };
     } else {
       this.ctx.response.body = { success: false };
     }

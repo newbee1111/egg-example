@@ -1,10 +1,10 @@
 module.exports = app => {
-  const { INTEGER, TEXT, BOOLEAN } = app.Sequelize;
+  const { INTEGER, TEXT, BOOLEAN, BIGINT } = app.Sequelize;
 
   const Record = app.model.define(
     'bk_visitor_user_record',
     {
-      id: { type: INTEGER, primaryKey: true },
+      id: { type: BIGINT(11), primaryKey: true },
       property: INTEGER,
       description: TEXT,
       is_deleted: BOOLEAN,

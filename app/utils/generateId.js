@@ -1,5 +1,5 @@
 const generateId = () => {
-  const autoId = parseInt(Math.random() * 10e4 + 1);
+  const autoId = parseInt(Math.random() * 10e6 + 1);
   const autoCharacter = [
     '1',
     '2',
@@ -17,7 +17,7 @@ const generateId = () => {
     'E',
   ];
 
-  const len = 6 - parseInt(Math.log(autoId) / Math.log(10) + 1);
+  const len = 7 - parseInt(Math.log(autoId) / Math.log(10) + 1);
   let numberId =
 		String(parseInt(Math.random() + 1)) + parseInt(Math.random() * 3 + 1);
   for (let i = 1; i <= len - 1; i++) {

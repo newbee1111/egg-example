@@ -18,10 +18,11 @@ const cleanObj = (() => {
   // 此处为pc浏览器的关闭测试，
   // 对于微信浏览器，往往用户使用的较多的是返回公众号的操作，
   // 对应的监听代码请看 public/js/wechatGoBack.js
-  window.onunload = function() {
-    cleanSession();
-  };
+  // window.onunload = function() {
+  //   cleanSession();
+  // };
   return {
     cleanSession,
+    getId,
   };
 })();

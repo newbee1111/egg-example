@@ -11,6 +11,8 @@
           alert('登录时效已过，请重新获取验证码登录');
           localStorage.removeItem('token');
           location.reload();
+        } else if (!mes.bind) {
+          location.pathname = `/${mes.user.id}/bindMainPage`;
         } else {
           location.pathname = `/${mes.user.id}/reservation`;
         }
@@ -55,6 +57,9 @@
           success(mes) {
             if (!mes.success) {
               alert('验证码已经过期，请重新获取');
+            } else if (!mes.bind) {
+              localStorage.setItem('token', mes.token);
+              location.pathname = `/${mes.user.id}/bindMainPage`;
             } else {
               localStorage.setItem('token', mes.token);
               location.pathname = `/${mes.user.id}/reservation`;
