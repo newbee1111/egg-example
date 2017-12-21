@@ -24,7 +24,6 @@ module.exports = app => {
         where: {
           identity_card: mainId,
           identity_card_type: idType,
-          full_name: fullName,
         },
       },
       { transaction: t }

@@ -23,20 +23,27 @@ module.exports = app => {
     });
   };
 
-  BindIdentity.mainIdentityCheck = function* (identity_id) {
-    const result = yield this.findAll({
-      where: { identity_id, is_main: true, is_delete: false },
-    });
-    if (!result.length) return false;
-    return true;
+  BindIdentity.mainIdentityCheck = function* (id, checkUser = false) {
+    let result;
+    if (!checkUser) {
+      result = yield this.findAll({
+        where: { identity_id: id, is_main: true, is_delete: false },
+      });
+    } else {
+      result = yield this.findAll({
+        where: { user_id: id, is_main: true, is_delete: false },
+      });
+    }
+    if (!result.length) return true;
+    return false;
   };
 
   BindIdentity.subIdentityCheck = function* (identity_id, user_id) {
     const result = yield this.findAll({
       where: { identity_id, is_main: false, is_delete: false, user_id },
     });
-    if (!result.length) return false;
-    return true;
+    if (!result.length) return true;
+    return false;
   };
 
   BindIdentity.bindMain = function* (identity, user_id) {

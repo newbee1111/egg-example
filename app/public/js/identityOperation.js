@@ -27,10 +27,15 @@
       dataType: 'json',
       data: { identityCard, fullName, idType, oldIdentity },
       success(mes) {
-        const { identity } = mes;
-        $('#mainIdentityShow').html(identity.identity_card);
-        $('#mainTypeShow').html(identity.identity_card_type);
-        $('#mainFullNameShow').html(identity.full_name);
+        console.log(mes);
+        if (mes.success) {
+          const { identity } = mes;
+          $('#mainIdentityShow').html(identity.identity_card);
+          $('#mainTypeShow').html(identity.identity_card_type);
+          $('#mainFullNameShow').html(identity.full_name);
+        } else {
+          alert('身份证已经被绑定过');
+        }
       },
     });
   });
@@ -45,19 +50,24 @@
         const wrapper = $('#subIdentityGroup');
         mes.forEach(item => {
           const sub = item.subIdentity;
-          wrapper.append(`
-          <div class="subId" id="${sub.id}">
-            <span>身份证为：</span> 
-            <span>${sub.identity_card}</span> 
-            <span>证件姓名为：</span> 
-            <span>${sub.full_name}</span> 
-            <span>证件种类为：</span> 
-            <span>${sub.identity_card_type}</span>
-            <button type="button" del="${
+          if (item.success) {
+            wrapper.append(`
+            <div class="subId" id="${sub.id}">
+              <span>身份证为：</span> 
+              <span>${sub.identity_card}</span> 
+              <span>证件姓名为：</span> 
+              <span>${sub.full_name}</span> 
+              <span>证件种类为：</span> 
+              <span>${sub.identity_card_type}</span>
+              <button type="button" del="${
   sub.id
   }" class="delBtn">删除此同行者</button>
-          </div>`);
+            </div>`);
+          }
         });
+        if (!mes.every(item => item.success)) {
+          alert('所填的某些身份证已经绑定到您的账号上了，请勿重复绑定');
+        }
         delBtnEvent();
       },
     });

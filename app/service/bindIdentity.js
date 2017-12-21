@@ -1,19 +1,26 @@
 const { Service } = require('egg');
 
 class BindIdentityService extends Service {
-  * bindMainAct(identity_mes, user) {
+  * bindMainAct(identity_mes, user, skipCheck = false, identityObj) {
     const { mainId, fullName, idType } = identity_mes;
     const { id: user_id } = user;
     const BindIdentityModel = this.app.model.BindIdentity;
-    const identity = yield this.ctx.service.identity.getOrCreateIdentity({
-      mainId,
-      fullName,
-      idType,
-    });
-    const alreadyBinded = yield BindIdentityModel.mainIdentityCheck(
-      identity.id
-    );
-    if (!alreadyBinded) {
+    let identity;
+    if (identityObj) {
+      identity = identityObj;
+    } else {
+      identity = yield this.ctx.service.identity.getOrCreateIdentity({
+        mainId,
+        fullName,
+        idType,
+      });
+    }
+    if (skipCheck) {
+      yield BindIdentityModel.bindMain(identity, user_id);
+      return { identity, success: true };
+    }
+    const notBinded = yield BindIdentityModel.mainIdentityCheck(identity.id);
+    if (notBinded) {
       yield BindIdentityModel.bindMain(identity, user_id);
       return { identity, success: true };
     }
@@ -38,13 +45,22 @@ class BindIdentityService extends Service {
   * changeMainIdentity(requestObj) {
     const BindIdentityModel = this.app.model.BindIdentity;
     const { user, oldIdentity, fullName, idType, identityCard } = requestObj;
+    const identity = yield this.ctx.service.identity.getOrCreateIdentity({
+      mainId: identityCard,
+      fullName,
+      idType,
+    });
+    const notBinded = yield BindIdentityModel.mainIdentityCheck(identity.id);
+    if (!notBinded) return { success: false };
     yield BindIdentityModel.unbindMain({
       user_id: user.id,
       oldIdentity,
     });
     const result = yield this.bindMainAct(
       { fullName, idType, mainId: identityCard },
-      user
+      user,
+      true,
+      identity
     );
     return result;
   }
@@ -61,11 +77,11 @@ class BindIdentityService extends Service {
         idType,
         fullName,
       });
-      const alreadyBinded = yield BindIdentityModel.subIdentityCheck(
+      const notBinded = yield BindIdentityModel.subIdentityCheck(
         subIdentity.id,
         user_id
       );
-      if (!alreadyBinded) {
+      if (notBinded) {
         yield BindIdentityModel.bindSub(subIdentity, user_id);
         idRes.push({ subIdentity, success: true });
       } else {

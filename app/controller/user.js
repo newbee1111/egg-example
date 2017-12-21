@@ -27,7 +27,7 @@ class UserController extends Controller {
       const { id } = user;
       yield this.app.sessionStore.set(id, user);
       const bind = yield this.ctx.service.user.mainIdentityCheck(id);
-      this.ctx.response.body = { success: true, token, user, bind };
+      this.ctx.response.body = { success: true, token, user, bind: !bind };
     } else {
       this.ctx.response.body = { success: false };
     }
@@ -43,7 +43,7 @@ class UserController extends Controller {
       const { id } = user;
       yield this.app.sessionStore.set(id, user);
       const bind = yield this.ctx.service.user.mainIdentityCheck(id);
-      this.ctx.response.body = { success: true, user, bind };
+      this.ctx.response.body = { success: true, user, bind: !bind };
     } else {
       this.ctx.response.body = { success: false };
     }

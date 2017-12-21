@@ -8,7 +8,7 @@ class UserService extends Service {
   }
   * mainIdentityCheck(user_id) {
     const BindIdentityModel = this.ctx.model.BindIdentity;
-    return yield BindIdentityModel.mainIdentityCheck(user_id);
+    return yield BindIdentityModel.mainIdentityCheck(user_id, true);
   }
 }
 

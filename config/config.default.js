@@ -29,7 +29,7 @@ module.exports = appInfo => {
   };
   config.redis = {
     client: {
-      host: 'Your redis port',
+      host: 'Your redis server',
       port: 6379,
       password: '123456',
       db: '0',
