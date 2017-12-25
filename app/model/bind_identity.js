@@ -73,6 +73,7 @@ module.exports = app => {
     const allIdentities = yield this.findAll({
       where: { user_id },
       include: [{ model: app.model.Identity }],
+      order: [[ app.Sequelize.literal('updated_at DESC') ]],
     });
     const result = arrayToJSON(allIdentities);
     return result;

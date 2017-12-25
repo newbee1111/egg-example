@@ -90,4 +90,7 @@
     });
   };
   delBtnEvent();
+  $('#goReservation').click(() => {
+    location.pathname = `/${user_id}/reservationPage`;
+  });
 })(cleanObj);

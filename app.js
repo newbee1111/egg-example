@@ -20,4 +20,27 @@ module.exports = app => {
       yield app.redis.del(key);
     },
   };
+
+  // 消息队列
+  const q = 'tasks';
+  const open = require('amqplib').connect('amqp://localhost');
+  app.queue = open.then(function(conn) {
+    return conn.createChannel();
+  });
+  app.queue
+    .then(function(ch) {
+      return ch.assertQueue(q).then(function(ok) {
+        return ch.consume(q, function(msg) {
+          if (msg !== null) {
+            console.log(msg.content.toString());
+            ch.ack(msg);
+            return 'it is very interesting';
+          }
+          return false;
+        });
+      });
+    })
+    .catch(console.warn);
+
+  app.queueName = q;
 };

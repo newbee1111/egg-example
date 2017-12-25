@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <h3>尊敬的<%= user.cellphone%>用户， 您的预约结果如下</h3>
+  <ul>
+    <%for (var i=0; i< reservations.length; i++){%>
+      <li id="<%= reservations[i].id%>">
+        <p>预约开始时间：<%= reservations[i].bk_visitor_reservation_time.time_start%></p>
+        <p>预约结束时间：<%= reservations[i].bk_visitor_reservation_time.time_end%></p>
+        <p>预约人数：<%= reservations[i].reservation_number%></p>
+        <p>预约人信息：
+        <ul>
+          <% for(var j=0; j< reservations[i].reservers.length;j++){%>
+            <li><%=reservations[i].reservers[j].bk_visitor_identity.full_name %></li>
+          <%}%>
+        </ul>
+        </p>
+        <p>
+          <%if(reservations[i].is_deleted){%>
+            <span>已取消</span>
+          <%}else{%>
+            <button type="button" id="cancelBtn">取消预约</button>
+          <%}%>
+        </p>
+      </li>
+    <%}%>
+  </ul>
+  <script type="text/javascript" src="/public/js/jquery-1.8.2.min.js" ></script>
+  <script type="text/javascript" src="/public/js/cleanSession.js"></script>
+  <script>
+    const reservationData = JSON.parse('<%- JSON.stringify(reservations)%>')
+    console.log(reservationData);
+  </script>
+  <script type="text/javascript" src="/public/js/myReservation.js"></script>
+</body>
+
+</html>

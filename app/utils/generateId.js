@@ -1,5 +1,5 @@
 const generateId = () => {
-  const autoId = parseInt(Math.random() * 10e6 + 1);
+  const autoId = parseInt(Math.random() * 999999 + 1);
   const autoCharacter = [
     '1',
     '2',

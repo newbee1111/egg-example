@@ -5,6 +5,7 @@
 	"private": true,
 	"dependencies": {
 		"@alicloud/sms-sdk": "^1.0.2",
+		"amqplib": "^0.5.2",
 		"egg": "^2.0.0",
 		"egg-mysql": "^3.0.0",
 		"egg-redis": "^1.0.2",

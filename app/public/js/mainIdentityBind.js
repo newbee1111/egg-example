@@ -14,7 +14,7 @@
       success(mes) {
         if (mes.success) {
           console.log('绑定成功');
-          location.pathname = `/${user_id}/reservation`;
+          location.pathname = `/${user_id}/reservationPage`;
         } else {
           console.log('身份证已被绑定');
         }

@@ -62,7 +62,7 @@
               location.pathname = `/${mes.user.id}/bindMainPage`;
             } else {
               localStorage.setItem('token', mes.token);
-              location.pathname = `/${mes.user.id}/reservation`;
+              location.pathname = `/${mes.user.id}/reservationPage`;
             }
           },
         });
