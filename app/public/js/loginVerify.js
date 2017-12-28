@@ -14,7 +14,7 @@
         } else if (!mes.bind) {
           location.pathname = `/${mes.user.id}/bindMainPage`;
         } else {
-          location.pathname = `/${mes.user.id}/reservation`;
+          location.pathname = `/${mes.user.id}/reservationPage`;
         }
       },
     });

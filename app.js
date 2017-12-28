@@ -1,10 +1,10 @@
 // 强制按照model生成表，开发环境下才使用
 module.exports = app => {
-  if (app.config.env === 'local') {
-    app.beforeStart(async () => {
-      await app.model.sync({ force: true });
-    });
-  }
+  // if (app.config.env === 'local') {
+  //   app.beforeStart(async () => {
+  //     await app.model.sync({ force: false });
+  //   });
+  // }
 
   app.sessionStore = {
     * get(key) {
@@ -29,7 +29,7 @@ module.exports = app => {
   });
   app.queue
     .then(function(ch) {
-      return ch.assertQueue(q).then(function(ok) {
+      return ch.assertQueue(q).then(function() {
         return ch.consume(q, function(msg) {
           if (msg !== null) {
             console.log(msg.content.toString());

@@ -1,5 +1,10 @@
 {
 	"extends": "eslint-config-egg",
+	"globals": {
+		"expect": true,
+		"should": true,
+		"done": true
+	},
 	"rules": {
 		"strict": "off",
 		"linebreak-style": "off"

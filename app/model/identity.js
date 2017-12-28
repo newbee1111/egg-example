@@ -31,14 +31,17 @@ module.exports = app => {
 
     if (!identity.length) {
       try {
-        identity = yield this.create({
-          id: generateId(),
-          full_name: fullName,
-          identity_card: mainId,
-          identity_card_type: idType,
-          is_banned: false,
-          is_deleted: false,
-        });
+        identity = yield this.create(
+          {
+            id: generateId(),
+            full_name: fullName,
+            identity_card: mainId,
+            identity_card_type: idType,
+            is_banned: false,
+            is_deleted: false,
+          },
+          { transaction: t }
+        );
         t.commit();
         return identity.toJSON();
       } catch (err) {

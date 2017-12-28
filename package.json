@@ -26,11 +26,13 @@
 		"babel-polyfill": "^6.26.0",
 		"babel-preset-env": "^1.6.1",
 		"babel-register": "^6.26.0",
+		"chai": "^4.1.2",
 		"egg-bin": "^4.3.5",
 		"egg-ci": "^1.8.0",
 		"egg-mock": "^3.13.0",
 		"eslint": "^4.11.0",
 		"eslint-config-egg": "^5.1.0",
+		"mocha": "^4.0.1",
 		"webstorm-disable-index": "^1.2.0"
 	},
 	"engines": {
@@ -42,7 +44,7 @@
 		"dev": "egg-bin dev",
 		"debug": "egg-bin debug",
 		"test": "npm run lint -- --fix && npm run test-local",
-		"test-local": "egg-bin test",
+		"test-local": "egg-bin test --delay",
 		"cov": "egg-bin cov",
 		"lint": "eslint .",
 		"ci": "npm run lint && npm run cov",
