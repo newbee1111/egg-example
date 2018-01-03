@@ -23,8 +23,8 @@ module.exports = app => {
     const result = yield this.findAll(
       {
         where: {
-          time_start: new Date('1 1,2018 12:00:00'),
-          time_end: new Date('1 1,2018 14:00:00'),
+          time_start: new Date('1 20,2020 12:00:00'),
+          time_end: new Date('1 20,2020 14:00:00'),
           number: 5,
           is_deleted: false,
         },
@@ -36,8 +36,8 @@ module.exports = app => {
         const result = yield this.create(
           {
             id: generateId(),
-            time_start: new Date('1 1,2018 12:00:00'),
-            time_end: new Date('1 1,2018 14:00:00'),
+            time_start: new Date('1 20,2020 12:00:00'),
+            time_end: new Date('1 20,2020 14:00:00'),
             number: 5,
             is_deleted: false,
           },

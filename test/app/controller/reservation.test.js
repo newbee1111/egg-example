@@ -2,7 +2,7 @@ const { app } = require('egg-mock/bootstrap');
 const { expect } = require('chai');
 const { arrayToJSON } = require('../../../app/utils/arrayToJSON');
 
-describe('test /app/controller/reservation', () => {
+describe('test controller /app/controller/reservation', () => {
   const testData = {};
   before(function* () {
     testData.user = yield app.model.User.getOrCreateUser('13063063080');
@@ -25,7 +25,7 @@ describe('test /app/controller/reservation', () => {
     let resArr = yield BindIdentityModel.findAll({
       where: {
         user_id,
-        is_delete: false,
+        is_deleted: false,
       },
     });
     resArr = arrayToJSON(resArr);

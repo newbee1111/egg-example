@@ -12,9 +12,10 @@ module.exports = app => {
   // 首页目前是登录页面
   router.get('/', controller.user.index);
   // 登录模块的路由
-  router.post('/login', controller.user.login);
-  router.post('/getMes', controller.user.getMes);
-  router.post('/token', controller.user.tokenVerify);
+  // router.post('/login', controller.user.login);
+  // router.post('/getMes', controller.user.getMes);
+  // router.post('/token', controller.user.tokenVerify);
+  router.post('/wxLogin', controller.user.wxLogin);
   // 绑定身份证模块的路由
   router.get(
     '/:id/bindMainPage',
@@ -75,4 +76,5 @@ module.exports = app => {
     validateSession,
     controller.user.cleanSession
   );
+  router.post('/getWXinfo', controller.user.getWXinfo);
 };

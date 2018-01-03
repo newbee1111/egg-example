@@ -8,7 +8,7 @@ module.exports = app => {
     {
       id: { type: BIGINT(11), primaryKey: true },
       is_main: BOOLEAN,
-      is_delete: BOOLEAN,
+      is_deleted: BOOLEAN,
     },
     {
       indexes: [{ unique: true, fields: [ 'id', 'user_id', 'identity_id' ] }],
@@ -27,11 +27,11 @@ module.exports = app => {
     let result;
     if (!checkUser) {
       result = yield this.findAll({
-        where: { identity_id: id, is_main: true, is_delete: false },
+        where: { identity_id: id, is_main: true, is_deleted: false },
       });
     } else {
       result = yield this.findAll({
-        where: { user_id: id, is_main: true, is_delete: false },
+        where: { user_id: id, is_main: true, is_deleted: false },
       });
     }
     if (!result.length) return true;
@@ -40,7 +40,7 @@ module.exports = app => {
 
   BindIdentity.subIdentityCheck = function* (identity_id, user_id) {
     const result = yield this.findAll({
-      where: { identity_id, is_main: false, is_delete: false, user_id },
+      where: { identity_id, is_main: false, is_deleted: false, user_id },
     });
     if (!result.length) return true;
     return false;
@@ -56,7 +56,7 @@ module.exports = app => {
           user_id,
           identity_id,
           is_main: true,
-          is_delete: false,
+          is_deleted: false,
         },
         { transaction: t }
       );
@@ -89,7 +89,7 @@ module.exports = app => {
             user_id,
             identity_id: oldIdentity,
             is_main: true,
-            is_delete: false,
+            is_deleted: false,
           },
         },
         { transaction: t }
@@ -113,7 +113,7 @@ module.exports = app => {
           user_id,
           identity_id,
           is_main: false,
-          is_delete: false,
+          is_deleted: false,
         },
         { transaction: t }
       );

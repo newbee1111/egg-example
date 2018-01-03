@@ -13,7 +13,7 @@
 		"egg-sequelize": "^3.1.0",
 		"egg-session-redis": "^1.0.0",
 		"egg-view-ejs": "^2.0.0",
-		"jsonwebtoken": "^8.1.0",
+		"jssha": "^2.3.1",
 		"mysql2": "^1.5.1",
 		"redis": "^2.8.0"
 	},
@@ -21,6 +21,7 @@
 		"autod": "^3.0.1",
 		"autod-egg": "^1.0.0",
 		"babel-cli": "^6.26.0",
+		"babel-eslint": "^8.1.2",
 		"babel-plugin-transform-class-properties": "^6.24.1",
 		"babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
 		"babel-polyfill": "^6.26.0",
@@ -40,8 +41,9 @@
 	},
 	"scripts": {
 		"start": "egg-scripts start --daemon",
+		"build": "babel ./app/public/preJS/ -d ./app/public/js/",
 		"stop": "egg-scripts stop",
-		"dev": "egg-bin dev",
+		"dev": "egg-bin dev --port=80",
 		"debug": "egg-bin debug",
 		"test": "npm run lint -- --fix && npm run test-local",
 		"test-local": "egg-bin test --delay",

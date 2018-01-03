@@ -1,6 +1,4 @@
-'use strict';
-
-(function () {
+(() => {
   // const token = localStorage.getItem('token');
   // if (token) {
   //   $.ajax({
@@ -72,50 +70,47 @@
   //     }
   //   });
   // }
-  $(function () {
-    var code = cleanObj.getCode();
+  $(function() {
+    const code = cleanObj.getCode();
     if (!code) {
       $.ajax({
         type: 'post',
         dataType: 'json',
         url: '/getWXinfo',
         async: true,
-        success: function success(mes) {
+        success(mes) {
           if (!mes) alert('请检查网络设置');
-          var appId = mes.appId;
-
-          var redirect_uri = encodeURIComponent('http://www.huangkangzheng.xin/');
-          var url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + appId + '&redirect_uri=' + redirect_uri + '&response_type=code&scope=snsapi_userinfo&state=0#wechat_redirect';
+          const { appId } = mes;
+          const redirect_uri = encodeURIComponent(
+            'http://www.huangkangzheng.xin/'
+          );
+          const url = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${appId}&redirect_uri=${redirect_uri}&response_type=code&scope=snsapi_userinfo&state=0#wechat_redirect`;
           location.href = url;
         },
-        error: function error() {
+        error() {
           alert('请检查网络设置');
-        }
+        },
       });
     } else {
       $.ajax({
         type: 'post',
         dataType: 'json',
         url: '/wxLogin',
-        data: { code: code },
-        success: function success(mes) {
-          var user = mes.user,
-              tokenObj = mes.tokenObj,
-              bind = mes.bind;
-
+        data: { code },
+        success(mes) {
+          const { user, tokenObj, bind } = mes;
           if (mes.success) {
-            var user_id = user.id;
-
+            const { id: user_id } = user;
             if (!bind) {
-              location.pathname = '/' + user_id + '/bindMainPage';
+              location.pathname = `/${user_id}/bindMainPage`;
             } else {
-              location.pathname = '/' + user_id + '/identityOperatePage';
+              location.pathname = `/${user_id}/identityOperatePage`;
             }
           }
         },
-        error: function error() {
+        error() {
           alert('请检查网络设置');
-        }
+        },
       });
     }
   });

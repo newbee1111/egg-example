@@ -8,5 +8,6 @@
 	"rules": {
 		"strict": "off",
 		"linebreak-style": "off"
-	}
+	},
+	"parser": "babel-eslint"
 }

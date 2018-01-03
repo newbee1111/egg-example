@@ -74,7 +74,7 @@ describe('test controller /app/controller/bindIdentity.js', () => {
       where: {
         user_id,
         is_main: false,
-        is_delete: false,
+        is_deleted: false,
       },
     });
     const subIdentity = arrayToJSON(subIdentities, true);

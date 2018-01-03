@@ -12,16 +12,17 @@ module.exports = app => {
       credit: INTEGER,
       is_banned: BOOLEAN,
       is_deleted: BOOLEAN,
+      open_id: STRING(255),
     },
     {
-      indexes: [{ unique: true, fields: [ 'id', 'cellphone' ] }],
+      indexes: [{ unique: true, fields: [ 'id', 'cellphone', 'openid' ] }],
     }
   );
 
-  User.getOrCreateUser = function* (cellphone) {
+  User.getOrCreateUser = function* (openid) {
     const t = yield app.model.transaction();
     const user = yield this.findAll(
-      { where: { cellphone } },
+      { where: { open_id: openid } },
       { transaction: t }
     );
     if (!user.length) {
@@ -29,7 +30,7 @@ module.exports = app => {
         const user = yield this.create(
           {
             id: parseInt(generateId()),
-            cellphone,
+            open_id: openid,
             credit: 100,
             is_banned: false,
             is_deleted: false,

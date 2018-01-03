@@ -2,7 +2,7 @@ const { app, assert } = require('egg-mock/bootstrap');
 const { arrayToJSON } = require('../../../app/utils/arrayToJSON');
 const { expect } = require('chai');
 
-describe('test /app/controller/identityOperate', () => {
+describe('test controller /app/controller/identityOperate', () => {
   const testData = {};
   before(function* () {
     testData.user = yield app.model.User.getOrCreateUser('13063063080');
@@ -27,7 +27,7 @@ describe('test /app/controller/identityOperate', () => {
       where: {
         user_id,
         is_main: true,
-        is_delete: false,
+        is_deleted: false,
       },
     });
     oldRes = arrayToJSON(oldRes, true);

@@ -17,6 +17,13 @@ module.exports = appInfo => {
   config.security = {
     csrf: {
       enable: false,
+      // useSession: false,
+      // ignoreJSON: false, // skip check JSON requests if ignoreJSON set to true
+      // cookieName: 'csrfToken', // csrf token's cookie name
+      // sessionName: 'csrfToken', // csrf token's session name
+      // headerName: 'x-csrf-token', // request csrf token's name in header
+      // bodyName: '_csrf', // request csrf token's name in body
+      // queryName: '_csrf',
     },
   };
   config.sequelize = {
