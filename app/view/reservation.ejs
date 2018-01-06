@@ -5,12 +5,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="styleSheet" href="/public/css/bootstrap.min.css">
+  <link rel="styleSheet" href="/public/css/common.css">
   <link rel="styleSheet" href="/public/css/reservation.css">
   <title>Document</title>
 </head>
 
 <body>
-  <h1>
+  <!--<h1>
     欢迎您，手机号为<%= user.cellphone %>的用户
   </h1>
   <button type="button" id="myReservation">我的预约</button>
@@ -45,8 +47,125 @@
       </div>
     <%}%>
   </div>
-  <button type="button" id="reserve" class="primary">预约</button>
+  <button type="button" id="reserve" class="primary">预约</button>-->
+  <div class="container">
+    <h1>预约</h1>
+    <p class="white-font intro">请先预约参观时间，然后填写游客的身份证号</p>
+    <div class="calendar-selector-wrapper">
+      <div class="left-icon-wrapper clndr-trigger">
+        <i class="material-icons left-icon">event</i>
+        <input class="calendar-selector" readonly type="text" name="dateTime" placeholder="请选择参观时间" />
+      </div>
+    </div>
+    <div class="calendar-whole-wrapper">
+      <div class="calendar-wrapper"></div>
+        <div class="day-time">
+          <div class="time-wrapper">
+            <span class="time">早晨&nbsp;7:00 ~ 11:00</span>
+            <span class="time">中午&nbsp;11:00 ~ 14:00</span>
+          </div>
+          <div class="time-wrapper">
+            <span class="time">下午&nbsp;14:00 ~ 18:00</span>
+            <span class="time">晚上&nbsp;18:00 ~ 22:00</span>
+          </div>
+          <div class="operate-wrapper">
+            <button type="button" id="cancel">取消</button>
+            <button type="button" id="saveClndr">保存</button>
+          </div>
+        </div>
+      </div>
+    <div class="identity-list-wrapper">
+      <div class="identity">
+        <i class="material-icons float-left">account_circle</i>
+        <div class="identity-wrapper">
+          <div class="identity-full-name">
+            黄日
+          </div>
+          <div class="identity-number">
+            123456789123456123X
+          </div>
+        </div>
+        <i class="material-icons float-right">cancel_copy</i>
+      </div>
+      <div class="identity">
+        <i class="material-icons float-left">person copy</i>
+        <div class="identity-wrapper">
+          <div class="identity-full-name">
+            黄日
+          </div>
+          <div class="identity-number">
+            123456789123456123X
+          </div>
+        </div>
+        <i class="material-icons float-right">cancel_copy</i>
+      </div>
+      <div class="left-icon-wrapper">
+        <i class="material-icons left-icon">person_add</i>
+        <span class="add-visitor">添加游客</span>
+      </div>
+    </div>
+    <div class='footer-panel'>
+      <span>
+        <span>下一步</span><i class="material-icons">keyboard_arrow_right</i>
+      </span>
+    </div>
+  </div>
+  <script id="dot-template" type="text/template">
+    <div class="clndr-year">{{= it.year}}</div>
+    <div class="clndr-controls">
+        <span class="clndr-previous-button glyphicon glyphicon-chevron-left"></span>
+        <div class="month">{{= it.month }}</div>
+        <span class="clndr-next-button glyphicon glyphicon-chevron-right">&rsaquo;</span>
+    </div>
+    <table class="clndr-grid">
+      <thead class="days-of-the-week">
+      {{~it.daysOfTheWeek :day:index}}
+          <th class="header-day">{{= day }}</th>
+      {{~}}
+      </thead>
+      <tbody class="days">
+      <tr>
+      {{~it.days :day:index}}
+      {{? index <= 6}}
+        <td class="{{= day.classes }}"><span>{{= day.day }}</span></td>
+      {{?}}
+      {{~}}
+      </tr>
+      <tr>
+      {{~it.days :day:index}}
+      {{? index < 14 && index >= 7}}
+        <td class="{{= day.classes }}"><span>{{= day.day }}</span></td>
+      {{?}}
+      {{~}}
+      </tr>
+      <tr>
+      {{~it.days :day:index}}
+      {{? index >= 14 && index < 21}}
+        <td class="{{= day.classes }}"><span>{{= day.day }}</span></td>
+      {{?}}
+      {{~}}
+      </tr>
+      <tr>
+      {{~it.days :day:index}}
+      {{? index < 28 && index >= 21}}
+        <td class="{{= day.classes }}"><span>{{= day.day }}</span></td>
+      {{?}}
+      {{~}}
+      </tr>
+      <tr>
+      {{~it.days :day:index}}
+      {{? index >= 28 }}
+        <td class="{{= day.classes }}"><span>{{= day.day }}</span></td>
+      {{?}}
+      {{~}}
+      </tr>
+      </tbody>
+    </table>
+</script>
   <script type="text/javascript" src="/public/js/jquery-1.8.2.min.js" ></script>
+  <script type="text/javascript" src="/public/js/doT.min.js" ></script>
+  <script type="text/javascript" src="/public/js/moment.min.js" ></script>
+  <script type="text/javascript" src="/public/js/calendar.min.js" ></script>
   <script type="text/javascript" src="/public/js/cleanSession.js"></script>
   <script type="text/javascript" src="/public/js/reservation.js"></script>
 </body>

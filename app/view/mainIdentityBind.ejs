@@ -6,10 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <link rel="styleSheet" href="/public/css/bootstrap.min.css">
+  <link rel="styleSheet" href="/public/css/common.css">
+  <link rel="styleSheet" href="/public/css/mainIdentityBind.css">
 </head>
 
 <body>
-  <h1>手机: <%= user.cellphone%>号主身份证绑定</h1>
+  <!--<h1>手机: <%= user.cellphone%>号主身份证绑定</h1>
   <form>
     <label for="mainIdentity">手机号主身份证</label>
     <input type="text" name="mainIdentity" value="" placeholder="请输入正确的身份证" size=30 id="mainIdentity">
@@ -18,7 +21,34 @@
     <label for="mainIdentity">身份证号类型</label>
     <input type="text" name="mainIdentity" value="" placeholder="请输入正确的身份证" size=30 id="idType">
     <input type="button" value="绑定" id="bindMainIdentity">
-  </form>
+  </form>-->
+  <div class="container">
+    <h1>欢迎</h1>
+    <p class="white-font intro">为抵制黄牛，请您提供本人的身份信息，我们不会以任何形式泄露您的信息</p>
+    <form class="input-wrapper">
+      <div class="format-input">
+        <input type="text" name="name" placeholder="姓名" id="fullName">
+      </div>
+      <div class="format-input dropdown">
+      <div>
+        <span class="typeViewer">选择证件类型</span><span class="caret"></span>
+      </div> 
+        <ul class="dropdownMenu" id="idType">
+          <li value="0">身份证</li>
+          <li value="1">台胞证</li>
+          <li value="2">护照</li>
+        </ul>
+      </div>
+      <div class="format-input">
+        <input type="text" name="mainIdentity" placeholder="证件号" id="mainIdentity" >
+      </div>
+    </form>
+    <div class="footer-panel">
+      <span id="bindMainIdentity">
+        <span>下一步</span><i class="material-icons">keyboard_arrow_right</i>
+      </span>
+    </div>
+  </div>
   <script type="text/javascript" src="/public/js/jquery-1.8.2.min.js" ></script>
   <script type="text/javascript" src="/public/js/cleanSession.js"></script>
   <script type="text/javascript" src="/public/js/mainIdentityBind.js"></script>

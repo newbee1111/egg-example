@@ -83,4 +83,20 @@ describe('test service /app/service/reservation.js', async () => {
     expect(result.length).to.be.equal(1);
     expect(result[0]).to.include.keys('id', 'reservation_number', 'reservers');
   });
+
+  it('[reservation service] cancelReservation', function* () {
+    const ctx = app.mockContext({ user: testObj.user });
+    const { id: user_id } = testObj.user;
+    const reservations = yield ctx.service.reservation.getUserAllReservations(
+      user_id
+    );
+
+    expect(reservations.length).to.be.equal(1);
+    const { id: reservation_id } = reservations[0];
+    const result = yield ctx.service.reservation.cancelReservation(
+      reservation_id
+    );
+
+    expect(result).to.be.deep.equal({ success: true });
+  });
 });

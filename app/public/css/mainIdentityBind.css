@@ -1,0 +1,32 @@
+.container {
+	background: url('../images/bindMainBG.png');
+	background-size: cover;
+	position: relative;
+}
+.intro {
+	width: 70%;
+	font-size: 1.2rem;
+	margin-bottom: 3.2rem;
+	line-height: 1.8rem;
+}
+.input-wrapper {
+	width: 50%;
+}
+.dropdownMenu {
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-color: #fff;
+	border-radius: 0.2rem;
+	box-shadow: 0 0 0.2rem 0 rgba(0, 0, 0, 0.12),
+		0 0.2rem 0.2rem 0 rgba(0, 0, 0, 0.12);
+	display: none;
+}
+.dropdownMenu li {
+	width: 100%;
+	padding: 1.2rem 0;
+	padding-left: 1.6rem;
+	border-bottom: 0.1rem rgba(0, 0, 0, 0.08) solid;
+}

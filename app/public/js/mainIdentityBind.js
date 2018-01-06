@@ -3,10 +3,11 @@
 (function (cleanObj) {
   var getId = cleanObj.getId;
   var user_id = getId();
+  cleanObj.setBodyHeight();
   var btn = $('#bindMainIdentity');
   btn.click(function () {
     var mainId = $('#mainIdentity').val();
-    var idType = $('#idType').val();
+    var idType = $('#idType li[selected]').attr('value');
     var fullName = $('#fullName').val();
     $.ajax({
       type: 'post',
@@ -22,5 +23,18 @@
         }
       }
     });
+  });
+
+  // 下拉菜单
+  $('.dropdown div').click(function () {
+    $('.dropdownMenu').toggle();
+  });
+  $('.dropdownMenu').click(function (e) {
+    var evt = e || window.event;
+    var target = evt.target || evt.srcElement;
+    $(target).siblings('li').removeAttr('selected');
+    $(target).attr('selected', true);
+    $('.dropdownMenu').toggle();
+    $('.typeViewer').html(target.innerHTML);
   });
 })(cleanObj);

@@ -39,6 +39,10 @@ var cleanObj = function () {
       }
     });
   };
+  var setBodyHeight = function setBodyHeight() {
+    var innerHeight = window.screen.availHeight;
+    $('.container').css('minHeight', innerHeight);
+  };
   var body = window.document.body;
   // 此处为pc浏览器的关闭测试，
   // 对于微信浏览器，往往用户使用的较多的是返回公众号的操作，
@@ -49,6 +53,7 @@ var cleanObj = function () {
   return {
     cleanSession: cleanSession,
     getId: getId,
-    getCode: getCode
+    getCode: getCode,
+    setBodyHeight: setBodyHeight
   };
 }();

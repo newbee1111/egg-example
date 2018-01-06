@@ -6,6 +6,7 @@
 	"dependencies": {
 		"@alicloud/sms-sdk": "^1.0.2",
 		"amqplib": "^0.5.2",
+		"dot": "^1.1.2",
 		"egg": "^2.0.0",
 		"egg-mysql": "^3.0.0",
 		"egg-redis": "^1.0.2",
@@ -13,6 +14,7 @@
 		"egg-sequelize": "^3.1.0",
 		"egg-session-redis": "^1.0.0",
 		"egg-view-ejs": "^2.0.0",
+		"jsonwebtoken": "^8.1.0",
 		"jssha": "^2.3.1",
 		"mysql2": "^1.5.1",
 		"redis": "^2.8.0"

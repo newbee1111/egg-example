@@ -1,8 +1,212 @@
-.primary {
-	padding: 12px 20px;
+.container {
+	background: rgb(35, 125, 131);
+}
+
+/*
+* 日历控件部分的CSS
+*/
+::-webkit-input-placeholder {
+	/* WebKit, Blink, Edge */
+	color: rgba(0, 0, 0, 0.36);
+	font-size: 1.4rem;
+}
+:-moz-placeholder {
+	/* Mozilla Firefox 4 to 18 */
+	color: rgba(0, 0, 0, 0.36);
+	font-size: 1.4rem;
+}
+::-moz-placeholder {
+	/* Mozilla Firefox 19+ */
+	color: rgba(0, 0, 0, 0.36);
+	font-size: 1.4rem;
+}
+:-ms-input-placeholder {
+	/* Internet Explorer 10-11 */
+	color: rgba(0, 0, 0, 0.36);
+	font-size: 1.4rem;
+}
+.calendar-selector-wrapper {
+	position: relative;
+	background: #fff;
+	padding-left: 1.6rem;
+	border-radius: 0.2rem;
+	box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.12);
+	margin-left: -0.8rem;
+	margin-right: -0.8rem;
+}
+.calendar-selector {
+	padding: 0rem 2.2rem;
 	border: none;
-	background-color: #cafa;
-	color: #000000;
-	border-radius: 4px;
-	font-size: 16px;
+	outline: none;
+}
+.left-icon-wrapper {
+	line-height: 4rem;
+}
+.left-icon {
+	vertical-align: middle;
+	font-size: 3rem;
+}
+.calendar-whole-wrapper {
+	display: none;
+	margin-bottom: 2.2rem;
+}
+.calendar-wrapper {
+	background-color: #f7ede1;
+	margin-left: -0.8rem;
+	margin-right: -0.8rem;
+	margin-top: 1.2rem;
+	box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.12);
+	border-top-left-radius: 0.2rem;
+	border-top-right-radius: 0.2rem;
+	padding-top: 1rem;
+}
+.clndr {
+	text-align: center;
+}
+.clndr-controls {
+	text-align: center;
+	height: 4rem;
+	line-height: 4rem;
+	font-family: Roboto-Medium;
+	color: rgba(0, 0, 0, 0.6);
+}
+.clndr-grid {
+	width: 100%;
+	height: 24rem;
+}
+.header-day {
+	text-align: center;
+	font-family: Roboto-Medium;
+	color: rgba(0, 0, 0, 0.6);
+	font-weight: bold;
+}
+.clndr-controls div {
+	display: inline-block;
+}
+.clndr-year {
+	margin-bottom: -1.2rem;
+	color: rgba(0, 0, 0, 0.3);
+}
+.day {
+	font-family: Roboto-Medium;
+	color: rgba(0, 0, 0, 0.6);
+	font-weight: bold;
+	width: 2.7rem;
+	height: 2.7rem;
+}
+.month {
+	font-size: 1.8rem;
+	font-family: 'PingFangSC-Medium';
+	margin: 0 1rem;
+	font-weight: bold;
+}
+.last-month,
+.next-month {
+	color: #f7ede1;
+}
+.clndr-selected {
+	border-radius: 50%;
+	background-color: #237d83;
+	display: inline-block;
+	width: 2.6rem;
+	height: 2.6rem;
+	line-height: 2.6rem;
+	color: #ffffff;
+}
+.day-time {
+	background-color: #f7ede1;
+	box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.12);
+	border-bottom-left-radius: 0.2rem;
+	border-bottom-right-radius: 0.2rem;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	margin: 0rem -0.8rem -1rem;
+}
+.time-wrapper {
+	text-align: center;
+}
+.time-wrapper:nth-child(2) {
+	margin-top: 0.8rem;
+}
+.time {
+	font-family: PingFangSC-Medium;
+	font-size: 1.4rem;
+	font-weight: bold;
+	/*color: #f7ede1;*/
+	display: inline-block;
+	padding: 0.6rem 1.2rem;
+	background: rgba(0, 0, 0, 0.08);
+	border-radius: 10rem;
+}
+.time-selected {
+	background-color: #237d83;
+	color: #fff;
+}
+.operate-wrapper {
+	text-align: right;
+	margin-top: 1rem;
+}
+.operate-wrapper button {
+	margin-right: 1.6rem;
+	border: none;
+	outline: none;
+	background: rgba(0, 0, 0, 0);
+	color: rgba(0, 0, 0, 0.36);
+}
+.operate-wrapper button + button {
+	margin-right: 2.4rem;
+	color: rgba(0, 0, 0, 0.2);
+}
+.validate-selected {
+	color: #237d83 !important;
+}
+
+/*身份证条目*/
+.identity-list-wrapper {
+	margin-top: 0.8rem;
+	margin-left: -0.8rem;
+	margin-right: -0.8rem;
+	background: #fff;
+	padding-left: 1.6rem;
+	padding-right: 1.6rem;
+	border-radius: 0.2rem;
+	box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.12);
+}
+.identity {
+	line-height: 2.4;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+.identity-wrapper {
+	display: inline-block;
+	line-height: 1.4;
+	margin-left: 2.6rem;
+	padding-top: 0.6rem;
+}
+.identity-wrapper div {
+	display: inline-block;
+}
+.identity-full-name {
+	width: 100%;
+	font-family: SourceHanSansSC-Medium;
+	color: rgba(0, 0, 0, 0.6);
+}
+.identity-number {
+	color: rgba(0, 0, 0, 0.36);
+}
+.float-left {
+	float: left;
+	font-size: 3rem;
+	margin-top: 1rem;
+}
+.float-right {
+	float: right;
+	font-size: 3rem;
+	margin-top: 1rem;
+	color: rgba(0, 0, 0, 0.2);
+}
+.add-visitor {
+	margin-left: 2.2rem;
+}
+.container {
+	padding-bottom: 6rem;
 }
