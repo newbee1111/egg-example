@@ -118,3 +118,17 @@ ul li {
 	/* Support for IE. */
 	font-feature-settings: 'liga';
 }
+.left-top-inner-radius {
+	position: absolute;
+	left: -0.5rem;
+	top: -0.5rem;
+	border: 0.5rem solid rgb(35, 125, 131);
+	border-radius: 50%;
+}
+.right-top-inner-radius {
+	position: absolute;
+	right: -0.5rem;
+	top: -0.5rem;
+	border: 0.5rem solid rgb(35, 125, 131);
+	border-radius: 50%;
+}

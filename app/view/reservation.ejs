@@ -75,33 +75,65 @@
         </div>
       </div>
     <div class="identity-list-wrapper">
-      <div class="identity">
+      <div class="identity" id="<%= mainIdentity.id%>">
         <i class="material-icons float-left">account_circle</i>
         <div class="identity-wrapper">
           <div class="identity-full-name">
-            黄日
+            <%= mainIdentity.full_name%>
           </div>
           <div class="identity-number">
-            123456789123456123X
+            <%= mainIdentity.identity_card%>
           </div>
         </div>
-        <i class="material-icons float-right">cancel_copy</i>
+        <i class="material-icons float-right cancelReservation">cancel_copy</i>
       </div>
-      <div class="identity">
-        <i class="material-icons float-left">person copy</i>
-        <div class="identity-wrapper">
-          <div class="identity-full-name">
-            黄日
+      <div id="subIdentities">
+        <%for (var i = 0; i < subIdentities.length; i++){%>
+          <div class="identity" id="<%= subIdentities[i].id%>">
+            <i class="material-icons float-left">person copy</i>
+            <div class="identity-wrapper">
+              <div class="identity-full-name">
+                <%= subIdentities[i].full_name%>
+              </div>
+              <div class="identity-number">
+                <%= subIdentities[i].identity_card%>
+              </div>
+            </div>
+            <i class="material-icons float-right cancelReservation">cancel_copy</i>
           </div>
-          <div class="identity-number">
-            123456789123456123X
-          </div>
-        </div>
-        <i class="material-icons float-right">cancel_copy</i>
+        <%}%>
       </div>
-      <div class="left-icon-wrapper">
+      <div class="add-wrapper">
+        <div class="left-top-inner-radius"></div>
+        <div class="right-top-inner-radius"></div>
         <i class="material-icons left-icon">person_add</i>
         <span class="add-visitor">添加游客</span>
+      </div>
+      <div class="add-form-wrapper">
+        <div class="left-top-inner-radius"></div>
+        <div class="right-top-inner-radius"></div>
+        <i class="material-icons left-icon">person_add</i>
+        <div class="add-form-input-first">
+          <input type="text" id="subFullName" name="full_name" placeholder="请填写姓名" />
+        </div>
+        <div class="add-form-input">
+          <button class="identity-type identity-type-selected" type="button" value="0">身份证</button>
+          <button class="identity-type" type="button" value="1">台胞证</button>
+          <button class="identity-type" type="button" value="2">护照</button>
+        </div>
+        <div class="add-form-input">
+          <input type="text" id="subIdentity" name="full_name" placeholder="证件号码" />
+        </div>
+        <div class="operation-wrapper">
+          <div class="operation-button" id="cancelAdd">
+            <i class="material-icons">clear</i>
+            <span>取消</span>
+          </div>
+          <div class="operation-button" id="saveAdd">
+            <i class="material-icons">save</i>
+            <span>保存</span>
+          </div>
+        </div>
       </div>
     </div>
     <div class='footer-panel'>
@@ -154,11 +186,20 @@
       </tr>
       <tr>
       {{~it.days :day:index}}
-      {{? index >= 28 }}
+      {{? index >= 28 && index < 35 }}
         <td class="{{= day.classes }}"><span>{{= day.day }}</span></td>
       {{?}}
       {{~}}
       </tr>
+      {{? it.days.length > 35 }}
+      <tr>
+      {{~it.days :day:index}}
+      {{? index >= 35 }}
+        <td class="{{= day.classes }}"><span>{{= day.day }}</span></td>
+      {{?}}
+      {{~}}
+      </tr>
+      {{?}}
       </tbody>
     </table>
 </script>

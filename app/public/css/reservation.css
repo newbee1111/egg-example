@@ -27,7 +27,7 @@
 }
 .calendar-selector-wrapper {
 	position: relative;
-	background: #fff;
+	background: #f7ede1;
 	padding-left: 1.6rem;
 	border-radius: 0.2rem;
 	box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.12);
@@ -38,6 +38,7 @@
 	padding: 0rem 2.2rem;
 	border: none;
 	outline: none;
+	background: rgba(0, 0, 0, 0);
 }
 .left-icon-wrapper {
 	line-height: 4rem;
@@ -166,15 +167,15 @@
 	margin-top: 0.8rem;
 	margin-left: -0.8rem;
 	margin-right: -0.8rem;
-	background: #fff;
-	padding-left: 1.6rem;
-	padding-right: 1.6rem;
+	background: #f7ede1;
 	border-radius: 0.2rem;
 	box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.12);
 }
 .identity {
 	line-height: 2.4;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+	padding-left: 1.6rem;
+	padding-right: 1.6rem;
 }
 .identity-wrapper {
 	display: inline-block;
@@ -189,6 +190,7 @@
 	width: 100%;
 	font-family: SourceHanSansSC-Medium;
 	color: rgba(0, 0, 0, 0.6);
+	font-weight: bold;
 }
 .identity-number {
 	color: rgba(0, 0, 0, 0.36);
@@ -209,4 +211,70 @@
 }
 .container {
 	padding-bottom: 6rem;
+}
+.add-wrapper {
+	line-height: 4rem;
+	position: relative;
+	padding-left: 1.6rem;
+	padding-right: 1.6rem;
+}
+.add-form-wrapper {
+	line-height: 4rem;
+	position: relative;
+	padding-left: 1.6rem;
+	padding-right: 1.6rem;
+	display: none;
+}
+.add-form-input-first {
+	width: 80%;
+	border-bottom: 0.1rem solid rgba(0, 0, 0, 0.08);
+	display: inline-block;
+	margin-left: 2.1rem;
+}
+.add-form-input {
+	width: 80%;
+	border-bottom: 0.1rem solid rgba(0, 0, 0, 0.08);
+	margin-left: 5rem;
+}
+.add-form-wrapper input {
+	border: none;
+	outline: none;
+	background: rgba(0, 0, 0, 0);
+}
+.identity-type {
+	border: none;
+	outline: none;
+	width: 5.6rem;
+	background: rgba(0, 0, 0, 0.06);
+	border-radius: 4rem;
+	display: inline-block;
+	height: 3rem;
+	line-height: 1rem;
+	font-size: 1.3rem;
+	color: rgba(0, 0, 0, 0.43);
+}
+.identity-type-selected {
+	background: rgba(0, 0, 0, 0.5);
+	color: #fff;
+}
+.operation-wrapper {
+	text-align: right;
+	line-height: 5rem;
+}
+.operation-button {
+	display: inline-block;
+}
+.operation-button:first-child {
+	margin-right: 2rem;
+	color: rgba(0, 0, 0, 0.36);
+}
+.operation-button:nth-child(2) {
+	color: rgba(0, 0, 0, 0.2);
+}
+.operation-button i {
+	vertical-align: middle;
+	margin-right: 0.4rem;
+}
+.can-save {
+	color: #237d83 !important;
 }

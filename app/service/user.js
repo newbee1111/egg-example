@@ -11,8 +11,8 @@ class UserService extends Service {
     return yield BindIdentityModel.mainIdentityCheck(user_id, true);
   }
   * wxLogin(code) {
-    const appId = 'Your appId';
-    const AppSecret = 'Your AppSecret';
+    const appId = 'your appId';
+    const AppSecret = 'your appSecret';
     let tokenObj = yield this.ctx.curl(
       `https://api.weixin.qq.com/sns/oauth2/access_token?appid=${appId}&secret=${AppSecret}&code=${code}&grant_type=authorization_code`
     );
