@@ -174,8 +174,7 @@
 .identity {
 	line-height: 2.4;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-	padding-left: 1.6rem;
-	padding-right: 1.6rem;
+	padding: 0.4rem 1.6rem;
 }
 .identity-wrapper {
 	display: inline-block;
@@ -213,7 +212,7 @@
 	padding-bottom: 6rem;
 }
 .add-wrapper {
-	line-height: 4rem;
+	line-height: 4.8rem;
 	position: relative;
 	padding-left: 1.6rem;
 	padding-right: 1.6rem;

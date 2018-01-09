@@ -1,18 +1,35 @@
 .container {
 	background: rgb(247, 237, 225);
 }
-
+.left-icon-wrapper {
+	position: relative;
+	line-height: 4.8rem;
+	padding-left: 1.6rem;
+	border-bottom: 1px solid rgba(245, 237, 223, 0.12);
+}
+.calendar-selector {
+	padding: 0rem 2.2rem;
+	border: none;
+	outline: none;
+	background: rgba(0, 0, 0, 0);
+	color: #f7ede1;
+}
 .left-icon {
 	vertical-align: middle;
 	font-size: 3rem;
 	color: #fff;
+}
+.reservation-title {
+	margin-top: 2rem;
+	color: rgba(0, 0, 0, 0.5);
+	font-weight: bold;
 }
 /*身份证条目*/
 .identity-list-wrapper {
 	margin-top: 0.8rem;
 	margin-left: -0.8rem;
 	margin-right: -0.8rem;
-	background: #237d83;
+	background: #a73d41;
 	border-radius: 0.2rem;
 	box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.12);
 }
@@ -126,9 +143,28 @@
 .can-save {
 	color: #f7ede1 !important;
 }
-.left-top-inner-radius {
+.left-top-inner-radius,
+.right-top-inner-radius,
+.left-bottom-inner-radius,
+.right-bottom-inner-radius {
 	border-color: rgb(247, 237, 225);
 }
-.right-top-inner-radius {
-	border-color: rgb(247, 237, 225);
+
+/*历史预约*/
+.history-wrapper {
+	background: rgba(0, 0, 0, 0.06);
+	box-shadow: none;
+}
+.history-wrapper i {
+	color: rgba(0, 0, 0, 0.43);
+}
+.history-time,
+.history-name {
+	color: rgba(0, 0, 0, 0.43);
+}
+.history-number {
+	color: rgba(0, 0, 0, 0.2);
+}
+.history-border {
+	border-bottom-color: rgba(0, 0, 0, 0.04);
 }

@@ -5,12 +5,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="styleSheet" href="/public/css/bootstrap.min.css">
+  <link rel="styleSheet" href="/public/css/common.css">
   <link rel="styleSheet" href="/public/css/idOperation.css">
   <title>Document</title>
 </head>
 
 <body>
-  <h1>
+  <!--<h1>
     欢迎您，手机号为<%= user.cellphone %>的用户
   </h1>
   <h3>您已绑定的主身份证为:</h3>
@@ -67,6 +69,69 @@
       <input type="button" value="绑定" id="bindSubIdentities">
     </form>
     <button type="button" id="goReservation">前往预约</button>
+  </div>-->
+  <div class="container">
+    <div class="identity-list-wrapper">
+      <div class="identity" id="<%= mainIdentity.id%>">
+        <i class="material-icons float-left">account_circle</i>
+        <div class="identity-wrapper">
+          <div class="identity-full-name">
+            <%= mainIdentity.full_name%>
+          </div>
+          <div class="identity-number">
+            <%= mainIdentity.identity_card%>
+          </div>
+        </div>
+      </div>
+      <div id="subIdentities">
+        <%for (var i = 0; i < subIdentities.length; i++){%>
+          <div class="identity" id="<%= subIdentities[i].id%>">
+            <i class="material-icons float-left">person copy</i>
+            <div class="identity-wrapper">
+              <div class="identity-full-name">
+                <%= subIdentities[i].full_name%>
+              </div>
+              <div class="identity-number">
+                <%= subIdentities[i].identity_card%>
+              </div>
+            </div>
+            <i class="material-icons float-right cancelReservation">cancel_copy</i>
+          </div>
+        <%}%>
+      </div>
+      <div class="add-wrapper">
+        <div class="left-top-inner-radius"></div>
+        <div class="right-top-inner-radius"></div>
+        <i class="material-icons left-icon">person_add</i>
+        <span class="add-visitor">添加游客</span>
+      </div>
+      <div class="add-form-wrapper">
+        <div class="left-top-inner-radius"></div>
+        <div class="right-top-inner-radius"></div>
+        <i class="material-icons left-icon">person_add</i>
+        <div class="add-form-input-first">
+          <input type="text" id="subFullName" name="full_name" placeholder="请填写姓名" />
+        </div>
+        <div class="add-form-input">
+          <button class="identity-type identity-type-selected" type="button" value="0">身份证</button>
+          <button class="identity-type" type="button" value="1">台胞证</button>
+          <button class="identity-type" type="button" value="2">护照</button>
+        </div>
+        <div class="add-form-input">
+          <input type="text" id="subIdentity" name="full_name" placeholder="证件号码" />
+        </div>
+        <div class="operation-wrapper">
+          <div class="operation-button" id="cancelAdd">
+            <i class="material-icons">clear</i>
+            <span>取消</span>
+          </div>
+          <div class="operation-button" id="saveAdd">
+            <i class="material-icons">save</i>
+            <span>保存</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <script type="text/javascript" src="/public/js/jquery-1.8.2.min.js" ></script>
   <script type="text/javascript" src="/public/js/cleanSession.js"></script>

@@ -1,5 +1,6 @@
 (cleanObj => {
   const user_id = cleanObj.getId();
+  cleanObj.setBodyHeight();
   $('#cancelBtn').on('click', e => {
     const evt = e || window.event;
     const target = evt.target || evt.srcElement;
@@ -7,7 +8,6 @@
       .parent()
       .parent()
       .attr('id');
-
     $.ajax({
       type: 'post',
       url: `/${user_id}/cancelReservation`,

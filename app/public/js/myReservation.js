@@ -2,6 +2,7 @@
 
 (function (cleanObj) {
   var user_id = cleanObj.getId();
+  cleanObj.setBodyHeight();
   $('#cancelBtn').on('click', function (e) {
     var evt = e || window.event;
     var target = evt.target || evt.srcElement;

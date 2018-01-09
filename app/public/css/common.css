@@ -132,3 +132,17 @@ ul li {
 	border: 0.5rem solid rgb(35, 125, 131);
 	border-radius: 50%;
 }
+.left-bottom-inner-radius {
+	position: absolute;
+	left: -0.5rem;
+	bottom: -0.5rem;
+	border: 0.5rem solid rgb(35, 125, 131);
+	border-radius: 50%;
+}
+.right-bottom-inner-radius {
+	position: absolute;
+	right: -0.5rem;
+	bottom: -0.5rem;
+	border: 0.5rem solid rgb(35, 125, 131);
+	border-radius: 50%;
+}
