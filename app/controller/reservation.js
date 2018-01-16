@@ -14,32 +14,16 @@ class ReservationController extends Controller {
       subIdentities.push(tempObj);
     });
     // 获取测试用的预约时间
-    const res = yield this.app.model.ReservationTime.createTestTime();
-    const resStartTime = new Date(res.time_start);
-    const resEndTime = new Date(res.time_end);
-    const startYear = resStartTime.getFullYear();
-    const startMonth = resStartTime.getMonth() + 1;
-    const startDay = resStartTime.getDate();
-    const startHour = resStartTime.getHours();
-    const startMin = resStartTime.getMinutes();
-    const startSecond = resStartTime.getSeconds();
-    const endYear = resEndTime.getFullYear();
-    const endMonth = resEndTime.getMonth() + 1;
-    const endDay = resEndTime.getDate();
-    const endHour = resEndTime.getHours();
-    const endMin = resEndTime.getMinutes();
-    const endSecond = resEndTime.getSeconds();
-    const reservationTime = [];
-    reservationTime.push({
-      time: `${startYear}-${startMonth}-${startDay} ${startHour}:${startMin}:${startSecond} ~ ${endYear}-${endMonth}-${endDay} ${endHour}:${endMin}:${endSecond}`,
-      id: res.id,
-      number: res.number,
-    });
+    yield this.app.model.ReservationTime.createTestTime();
+    const res = yield this.ctx.service.reservationTime.getReservationTimeByMonth(
+      '2018',
+      '01'
+    );
     yield this.ctx.render('reservation.ejs', {
       user,
       mainIdentity,
       subIdentities,
-      reservationTime,
+      reservationTime: res,
     });
   }
   * setReservation() {

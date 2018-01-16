@@ -1,15 +1,18 @@
 const { generateId } = require('../utils/generateId');
 const { arrayToJSON } = require('../utils/arrayToJSON');
+const { analizeTime } = require('../utils/analizeTime');
 module.exports = app => {
-  const { INTEGER, BOOLEAN, DATE, BIGINT } = app.Sequelize;
+  const { INTEGER, BOOLEAN, STRING, BIGINT, DATE } = app.Sequelize;
 
   const ReservationTime = app.model.define(
     'bk_visitor_reservation_time',
     {
       id: { type: BIGINT(11), primaryKey: true },
-      time_start: DATE,
-      time_end: DATE,
+      date: STRING,
+      time_start: STRING,
+      time_end: STRING,
       number: INTEGER,
+      avail_time: DATE,
       is_deleted: BOOLEAN,
     },
     {
@@ -20,11 +23,16 @@ module.exports = app => {
   // 由于后台管理还未开始，先由此处生成测试的预约时间段
   ReservationTime.createTestTime = function* () {
     const t = yield app.model.transaction();
+    const avail = new Date();
+    const { year, month, day } = analizeTime(avail);
+    const avail_time = `${year}-${month}-${day}`;
+    const date = `${year}-${month}-${day + 6}`;
     const result = yield this.findAll(
       {
         where: {
-          time_start: new Date('1 20,2020 12:00:00'),
-          time_end: new Date('1 20,2020 14:00:00'),
+          date,
+          time_start: '12:00',
+          time_end: '14:00',
           number: 5,
           is_deleted: false,
         },
@@ -33,11 +41,14 @@ module.exports = app => {
     );
     if (!result.length) {
       try {
+        // yield this.destroy({});
         const result = yield this.create(
           {
             id: generateId(),
-            time_start: new Date('1 20,2020 12:00:00'),
-            time_end: new Date('1 20,2020 14:00:00'),
+            date,
+            time_start: '12:00',
+            time_end: '14:00',
+            avail_time,
             number: 5,
             is_deleted: false,
           },
@@ -69,6 +80,14 @@ module.exports = app => {
     total += personNum;
     if (total > limit) return true;
     return false;
+  };
+
+  ReservationTime.getReservationTimeByMonth = function* (minDate, maxDate) {
+    let reservationTime = yield this.findAll({
+      where: { date: { $gte: minDate, $lt: maxDate }, is_deleted: false },
+    });
+    reservationTime = arrayToJSON(reservationTime);
+    return reservationTime;
   };
 
   return ReservationTime;

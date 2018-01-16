@@ -61,12 +61,7 @@
       <div class="calendar-wrapper"></div>
         <div class="day-time">
           <div class="time-wrapper">
-            <span class="time">早晨&nbsp;7:00 ~ 11:00</span>
-            <span class="time">中午&nbsp;11:00 ~ 14:00</span>
-          </div>
-          <div class="time-wrapper">
-            <span class="time">下午&nbsp;14:00 ~ 18:00</span>
-            <span class="time">晚上&nbsp;18:00 ~ 22:00</span>
+            
           </div>
           <div class="operate-wrapper">
             <button type="button" id="cancel">取消</button>
@@ -159,35 +154,35 @@
       <tr>
       {{~it.days :day:index}}
       {{? index <= 6}}
-        <td class="{{= day.classes }}"><span>{{= day.day }}</span></td>
+        <td class="{{= day.classes }} invalid"><span>{{= day.day }}</span></td>
       {{?}}
       {{~}}
       </tr>
       <tr>
       {{~it.days :day:index}}
       {{? index < 14 && index >= 7}}
-        <td class="{{= day.classes }}"><span>{{= day.day }}</span></td>
+        <td class="{{= day.classes }} invalid"><span>{{= day.day }}</span></td>
       {{?}}
       {{~}}
       </tr>
       <tr>
       {{~it.days :day:index}}
       {{? index >= 14 && index < 21}}
-        <td class="{{= day.classes }}"><span>{{= day.day }}</span></td>
+        <td class="{{= day.classes }} invalid"><span>{{= day.day }}</span></td>
       {{?}}
       {{~}}
       </tr>
       <tr>
       {{~it.days :day:index}}
       {{? index < 28 && index >= 21}}
-        <td class="{{= day.classes }}"><span>{{= day.day }}</span></td>
+        <td class="{{= day.classes }} invalid"><span>{{= day.day }}</span></td>
       {{?}}
       {{~}}
       </tr>
       <tr>
       {{~it.days :day:index}}
       {{? index >= 28 && index < 35 }}
-        <td class="{{= day.classes }}"><span>{{= day.day }}</span></td>
+        <td class="{{= day.classes }} invalid"><span>{{= day.day }}</span></td>
       {{?}}
       {{~}}
       </tr>
@@ -195,7 +190,7 @@
       <tr>
       {{~it.days :day:index}}
       {{? index >= 35 }}
-        <td class="{{= day.classes }}"><span>{{= day.day }}</span></td>
+        <td class="{{= day.classes }} invalid"><span>{{= day.day }}</span></td>
       {{?}}
       {{~}}
       </tr>
@@ -208,6 +203,12 @@
   <script type="text/javascript" src="/public/js/moment.min.js" ></script>
   <script type="text/javascript" src="/public/js/calendar.min.js" ></script>
   <script type="text/javascript" src="/public/js/cleanSession.js"></script>
+  <script>
+    (cleanObj => {
+      const data = JSON.parse('<%- JSON.stringify(reservationTime)%>');
+      cleanObj.reservationTime = data;
+    })(cleanObj);
+  </script>
   <script type="text/javascript" src="/public/js/reservation.js"></script>
 </body>
 </html>

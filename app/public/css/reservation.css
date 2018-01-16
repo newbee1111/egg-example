@@ -95,6 +95,9 @@
 	width: 2.7rem;
 	height: 2.7rem;
 }
+.invalid {
+	color: rgba(0, 0, 0, 0.2);
+}
 .month {
 	font-size: 1.8rem;
 	font-family: 'PingFangSC-Medium';
@@ -122,6 +125,7 @@
 	padding-top: 1rem;
 	padding-bottom: 1rem;
 	margin: 0rem -0.8rem -1rem;
+	display: none;
 }
 .time-wrapper {
 	text-align: center;
@@ -134,10 +138,12 @@
 	font-size: 1.4rem;
 	font-weight: bold;
 	/*color: #f7ede1;*/
+	margin-bottom: 0.6rem;
 	display: inline-block;
 	padding: 0.6rem 1.2rem;
 	background: rgba(0, 0, 0, 0.08);
 	border-radius: 10rem;
+	margin-right: 0.6rem;
 }
 .time-selected {
 	background-color: #237d83;
@@ -145,7 +151,6 @@
 }
 .operate-wrapper {
 	text-align: right;
-	margin-top: 1rem;
 }
 .operate-wrapper button {
 	margin-right: 1.6rem;

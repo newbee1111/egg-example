@@ -5,6 +5,32 @@
   cleanObj.setBodyHeight();
   // 日历设置
   moment.locale('cn');
+  // 后台返回可预约日历日期分析函数
+  var clndrDate = function clndrDate(reservationTime) {
+    var now = new Date();
+    reservationTime.forEach(function (item) {
+      var avail_time = item.avail_time,
+          date = item.date,
+          time_start = item.time_start,
+          time_end = item.time_end,
+          id = item.id;
+
+      if (now.getTime() > new Date(avail_time).getTime() && now.getTime() < new Date(date).getTime()) {
+        $('.calendar-day-' + date).removeClass('invalid');
+        $('.calendar-day-' + date).click(function (e) {
+          var evt = e || window.event;
+          var target = evt.target || evt.srcElement;
+          if (target.tagName === 'TD' && !$(target).find('span').hasClass('clndr-selected') || target.tagName === 'SPAN' && !$(target).hasClass('clndr-selected')) {
+            $('.time-wrapper').append('<span class="time" id="' + id + '">' + time_start + ' ~ ' + time_end + '</span>');
+            $('.day-time').show();
+          } else {
+            $('.time-wrapper').empty();
+            $('.day-time').hide();
+          }
+        });
+      }
+    });
+  };
   var clndrTemplate = doT.template($('#dot-template').html());
   $('.calendar-wrapper').clndr({
     clickEvents: {
@@ -12,6 +38,9 @@
         var element = target.element;
 
         if (element) {
+          if (/past/.test(element.className) || /invalid/.test(element.className)) {
+            return;
+          }
           var span = element.getElementsByTagName('span')[0];
           if (!/clndr-selected/.test(span.className)) {
             $('.clndr-selected').removeClass('clndr-selected');
@@ -31,7 +60,7 @@
     moment: moment
   });
   // 日历下方选择时间
-  $('.time').on('click', function (e) {
+  $(document).on('click', '.time', function (e) {
     if (!$('.day span').hasClass('clndr-selected')) {
       alert('请先选择日期');
       return;
@@ -63,7 +92,7 @@
     var preDate = classNames.split(' ')[1];
     var date = preDate.split('y-')[1];
     var preTime = $('.time-selected').html();
-    var time = preTime.split('&nbsp;')[1]; // 注意这里的截断可能有问题
+    var time = preTime; // 注意这里的截断可能有问题
     console.log(date + ' ' + time);
     $('.calendar-whole-wrapper').hide();
     $('.calendar-selector').val(date + ' ' + time);
@@ -74,6 +103,12 @@
     $('.calendar-whole-wrapper').show();
     $('.calendar-selector-wrapper').hide();
   });
+
+  // 日历根据后台传输的reservationTime来改动日历
+  console.log(cleanObj.reservationTime);
+  var reservationTime = cleanObj.reservationTime;
+
+  clndrDate(reservationTime);
   // 日历设置结束
 
   // 添加游客的填写框
@@ -170,58 +205,4 @@
     var target = evt.target || evt.srcElement;
     $(target).parent().remove();
   });
-  // $('#viewAllId').click(() => {
-  //   location.pathname = `/${user_id}/identityOperatePage`;
-  // });
-  // let reservers = [];
-  // let reservation_time_id;
-  // $("input[type='checkbox']").click(e => {
-  //   const evt = e || window.event;
-  //   const target = evt.target || evt.srcElement;
-  //   const checked = $(target).attr('checked');
-  //   const identity_id = $(target)
-  //     .parent()
-  //     .attr('id');
-  //   if (checked) {
-  //     reservers.push(identity_id);
-  //   } else {
-  //     const temp = [];
-  //     reservers.forEach(item => {
-  //       if (item !== identity_id) {
-  //         temp.push(item);
-  //       }
-  //     });
-  //     reservers = temp;
-  //   }
-  // });
-  // $('#timeSelection').change(e => {
-  //   const evt = e || window.event;
-  //   const target = evt.target || evt.srcElement;
-  //   if (target.value !== '0') {
-  //     reservation_time_id = target.value;
-  //   } else {
-  //     reservation_time_id = '';
-  //   }
-  // });
-
-  // $('#reserve').click(() => {
-  //   if (!reservers.length || !reservation_time_id) {
-  //     console.log('您未选择预约时间或者预约人');
-  //     return;
-  //   }
-  //   console.log({ reservers, timeId: reservation_time_id });
-  //   $.ajax({
-  //     type: 'post',
-  //     url: `/${user_id}/reservation`,
-  //     dataType: 'json',
-  //     data: { reservers, timeId: reservation_time_id },
-  //     success(mes) {
-  //       console.log(mes);
-  //     },
-  //   });
-  // });
-
-  // $('#myReservation').on('click', () => {
-  //   location.pathname = `/${user_id}/myReservationPage`;
-  // });
 })(cleanObj);

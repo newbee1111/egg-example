@@ -15,7 +15,7 @@ module.exports = app => {
       open_id: STRING(255),
     },
     {
-      indexes: [{ unique: true, fields: [ 'id', 'cellphone', 'openid' ] }],
+      indexes: [{ unique: true, fields: [ 'id', 'cellphone', 'open_id' ] }],
     }
   );
 

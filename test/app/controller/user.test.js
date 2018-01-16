@@ -14,6 +14,8 @@ setTimeout(() => {
       const ReservationModel = app.model.Reservation;
       const UserModel = app.model.User;
       const ReservationIdentityModel = app.model.ReservationIdentity;
+      const ReservationTimeModel = app.model.ReservationTime;
+      await ReservationTimeModel.destroy({ where: {} });
       await ReservationIdentityModel.destroy({ where: {} });
       await UserModel.destroy({ where: {} });
       await ReservationModel.destroy({ where: {} });
