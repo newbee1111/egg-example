@@ -1,5 +1,6 @@
 (cleanObj => {
   const user_id = cleanObj.getId();
+  const { reservationTime } = cleanObj;
   cleanObj.setBodyHeight();
   // 日历设置
   moment.locale('cn');
@@ -58,6 +59,12 @@
           }
         }
       },
+      nextMonth() {
+        clndrDate(reservationTime);
+      },
+      previousMonth() {
+        clndrDate(reservationTime);
+      },
     },
     render(data) {
       return clndrTemplate(data);
@@ -111,7 +118,6 @@
   });
 
   // 日历根据后台传输的reservationTime来改动日历
-  const { reservationTime } = cleanObj;
   clndrDate(reservationTime);
   // 日历设置结束
 

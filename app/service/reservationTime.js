@@ -11,7 +11,6 @@ class ReservationTimeService extends Service {
       minDate,
       maxDate
     );
-    console.log(reservationTime);
     return reservationTime;
   }
 }

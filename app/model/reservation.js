@@ -92,7 +92,7 @@ module.exports = app => {
     let resArr = yield this.findAll({
       where: { user_id },
       include: [{ model: app.model.ReservationTime }],
-      order: [[ app.Sequelize.literal('updated_at', 'asc') ]],
+      order: [[ app.Sequelize.literal('updated_at DESC') ]],
     });
     resArr = arrayToJSON(resArr);
     return resArr;

@@ -18,4 +18,15 @@ const analizeTime = date => {
   return { year, month, day, hour, min, second };
 };
 
-module.exports = { analizeTime };
+const reformTime = timeObj => {
+  const year = timeObj.year || 2018;
+  const month = timeObj.month || 1;
+  const day = timeObj.day || 1;
+  const hour = timeObj.hour || 0;
+  const min = timeObj.min || 0;
+  const second = timeObj.second || 0;
+
+  return new Date(year, month, day, hour, min, second, 0);
+};
+
+module.exports = { analizeTime, reformTime };

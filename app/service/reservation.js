@@ -1,4 +1,5 @@
 const { Service } = require('egg');
+const { reformTime } = require('../utils/analizeTime');
 
 class ReservationService extends Service {
   * setReservation(reservers, timeId, user) {
@@ -39,7 +40,25 @@ class ReservationService extends Service {
       reservationsArr[i].reservers = reservers;
     }
 
-    return reservationsArr;
+    const currentReservations = [];
+    const historyReservations = [];
+    reservationsArr.forEach(item => {
+      const { bk_visitor_reservation_time: time } = item;
+      const { date, time_end, time_start } = time;
+      const dateArr = date.split('-');
+      const year = dateArr[0];
+      const month = dateArr[1];
+      const day = dateArr[2];
+      const hourArr = time_end.split(':');
+      const hour = hourArr[0];
+      const min = hourArr[1];
+      const reformedDate = reformTime({ year, month, day, hour, min });
+      item.timeStr = `${date} ${time_start}~${time_end}`;
+      if (reformedDate >= new Date()) currentReservations.push(item);
+      else historyReservations.push(item);
+    });
+
+    return { currentReservations, historyReservations };
   }
 
   * cancelReservation(user_id, reservation_id) {

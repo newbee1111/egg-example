@@ -2,6 +2,8 @@
 
 (function (cleanObj) {
   var user_id = cleanObj.getId();
+  var reservationTime = cleanObj.reservationTime;
+
   cleanObj.setBodyHeight();
   // 日历设置
   moment.locale('cn');
@@ -51,6 +53,12 @@
             $('#saveClndr').removeClass('validate-selected');
           }
         }
+      },
+      nextMonth: function nextMonth() {
+        clndrDate(reservationTime);
+      },
+      previousMonth: function previousMonth() {
+        clndrDate(reservationTime);
       }
     },
     render: function render(data) {
@@ -104,8 +112,6 @@
   });
 
   // 日历根据后台传输的reservationTime来改动日历
-  var reservationTime = cleanObj.reservationTime;
-
   clndrDate(reservationTime);
   // 日历设置结束
 
