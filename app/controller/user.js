@@ -1,6 +1,6 @@
 const { Controller } = require('egg');
-const { getExpireTime, getNowSeconds } = require('../utils/expireTime');
-const jwt = require('jsonwebtoken');
+const { getExpireTime } = require('../utils/expireTime');
+// const jwt = require('jsonwebtoken');
 
 class UserController extends Controller {
   * index() {
@@ -18,36 +18,36 @@ class UserController extends Controller {
     this.ctx.response.body = { tel, validateCode, expireTime };
   }
 
-  * login() {
-    const { tel, expireTime } = this.ctx.request.body;
-    const now = getNowSeconds();
-    if (expireTime > now) {
-      const user = yield this.ctx.service.user.registryOrLogin(tel);
-      const token = jwt.sign({ tel }, 'secret', { expiresIn: '1d' });
-      const { id } = user;
-      yield this.app.sessionStore.set(id, user);
-      const bind = yield this.ctx.service.user.mainIdentityCheck(id);
-      this.ctx.response.body = { success: true, token, user, bind: !bind };
-    } else {
-      this.ctx.response.body = { success: false };
-    }
-  }
+  // * login() {
+  //   const { tel, expireTime } = this.ctx.request.body;
+  //   const now = getNowSeconds();
+  //   if (expireTime > now) {
+  //     const user = yield this.ctx.service.user.registryOrLogin(tel);
+  //     const token = jwt.sign({ tel }, 'secret', { expiresIn: '1d' });
+  //     const { id } = user;
+  //     yield this.app.sessionStore.set(id, user);
+  //     const bind = yield this.ctx.service.user.mainIdentityCheck(id);
+  //     this.ctx.response.body = { success: true, token, user, bind: !bind };
+  //   } else {
+  //     this.ctx.response.body = { success: false };
+  //   }
+  // }
 
-  * tokenVerify() {
-    const { token } = this.ctx.request.body;
-    const decoded = jwt.decode(token, 'secret');
-    const { exp, tel } = decoded;
-    const now = getNowSeconds();
-    if (now <= exp) {
-      const user = yield this.ctx.service.user.registryOrLogin(tel);
-      const { id } = user;
-      yield this.app.sessionStore.set(id, user);
-      const bind = yield this.ctx.service.user.mainIdentityCheck(id);
-      this.ctx.response.body = { success: true, user, bind: !bind };
-    } else {
-      this.ctx.response.body = { success: false };
-    }
-  }
+  // * tokenVerify() {
+  //   const { token } = this.ctx.request.body;
+  //   const decoded = jwt.decode(token, 'secret');
+  //   const { exp, tel } = decoded;
+  //   const now = getNowSeconds();
+  //   if (now <= exp) {
+  //     const user = yield this.ctx.service.user.registryOrLogin(tel);
+  //     const { id } = user;
+  //     yield this.app.sessionStore.set(id, user);
+  //     const bind = yield this.ctx.service.user.mainIdentityCheck(id);
+  //     this.ctx.response.body = { success: true, user, bind: !bind };
+  //   } else {
+  //     this.ctx.response.body = { success: false };
+  //   }
+  // }
 
   // * cleanSession() {
   //   const { id } = this.ctx.user;
@@ -57,17 +57,17 @@ class UserController extends Controller {
   //   console.log(testRes);
   // }
 
-  // * getWXinfo() {
-  //   const appId = 'Your appId';
-  //   this.ctx.response.body = { appId };
-  // }
+  * getWXinfo() {
+    const appId = 'Your AppId';
+    this.ctx.response.body = { appId };
+  }
 
-  // * wxLogin() {
-  //   const { code } = this.ctx.request.body;
-  //   const result = yield this.ctx.service.user.wxLogin(code);
+  * wxLogin() {
+    const { code } = this.ctx.request.body;
+    const result = yield this.ctx.service.user.wxLogin(code);
 
-  //   this.ctx.response.body = result;
-  // }
+    this.ctx.response.body = result;
+  }
 }
 
 module.exports = UserController;

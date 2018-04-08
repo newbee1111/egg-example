@@ -42,6 +42,7 @@ var cleanObj = function () {
   var setBodyHeight = function setBodyHeight() {
     var innerHeight = window.screen.availHeight;
     $('.container').css('minHeight', innerHeight);
+    $('.loadingWrapper').css('lineHeight', innerHeight + 'px');
   };
   var body = window.document.body;
   // 此处为pc浏览器的关闭测试，

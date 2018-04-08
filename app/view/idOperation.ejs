@@ -12,64 +12,6 @@
 </head>
 
 <body>
-  <!--<h1>
-    欢迎您，手机号为<%= user.cellphone %>的用户
-  </h1>
-  <h3>您已绑定的主身份证为:</h3>
-  <div>
-    <span>主身份证为：</span> 
-    <span id="mainIdentityShow"><%= mainIdentity.identity_card%></span> 
-    <span>证件姓名为：</span> 
-    <span id="mainFullNameShow"><%= mainIdentity.full_name%></span> 
-    <span>证件种类为：</span> 
-    <span id="mainTypeShow"><%= mainIdentity.identity_card_type%></span> 
-    <form>
-      <label for="mainIdentity">身份证</label>
-      <input type="text" name="mainIdentity" value="" placeholder="请输入正确的身份证" size=30 id="mainIdentity">
-      <label for="mainIdentity">姓名</label>
-      <input type="text" name="mainIdentity" value="" placeholder="请输入正确的身份证" size=30 id="fullName">
-      <label for="mainIdentity">证件类型</label>
-      <input type="text" name="mainIdentity" value="" placeholder="请输入正确的身份证" size=30 id="idType">
-      <input type="button" value="修改绑定" id="changeMainIdentity">
-    </form>
-  </div>
-  <h3>您已绑定的同行者身份证为：</h3>
-  <div id="subIdentityGroup">
-    <%for (var i=0; i<subIdentities.length;i++){%>
-      <div class="subId" id="<%= subIdentities[i].id%>">
-          <span>身份证为：</span> 
-          <span><%= subIdentities[i].identity_card%></span> 
-          <span>证件姓名为：</span> 
-          <span><%= subIdentities[i].full_name%></span> 
-          <span>证件种类为：</span> 
-          <span><%= subIdentities[i].identity_card_type%></span>
-          <button type="button" del="<%= subIdentities[i].id%>" class="delBtn">删除此同行者</button>
-      </div>
-    <%}%>
-  </div>
-  <h3>添加绑定同行者的身份证</h3>
-  <div>
-    <form>
-      <div>
-        <label for="subIdentity">身份证</label>
-        <input type="text" name="subIdentityCard" value="" placeholder="请输入正确的身份证" size=30>
-        <label for="subIdentity">姓名</label>
-        <input type="text" name="subFullName" value="" placeholder="请输入正确的身份证" size=30>
-        <label for="subIdentity">证件类型</label>
-        <input type="text" name="subType" value="" placeholder="请输入正确的身份证" size=30>
-      </div>
-      <div>
-        <label for="subIdentity">身份证</label>
-        <input type="text" name="subIdentityCard" value="" placeholder="请输入正确的身份证" size=30>
-        <label for="subIdentity">姓名</label>
-        <input type="text" name="subFullName" value="" placeholder="请输入正确的身份证" size=30>
-        <label for="subIdentity">证件类型</label>
-        <input type="text" name="subType" value="" placeholder="请输入正确的身份证" size=30>
-      </div>
-      <input type="button" value="绑定" id="bindSubIdentities">
-    </form>
-    <button type="button" id="goReservation">前往预约</button>
-  </div>-->
   <div class="container">
     <div class="identity-list-wrapper">
       <div class="identity" id="<%= mainIdentity.id%>">

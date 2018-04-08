@@ -17,7 +17,7 @@ class ReservationController extends Controller {
     yield this.app.model.ReservationTime.createTestTime();
     const res = yield this.ctx.service.reservationTime.getReservationTimeByMonth(
       '2018',
-      '01'
+      '04'
     );
     yield this.ctx.render('reservation.ejs', {
       user,

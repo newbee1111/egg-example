@@ -93,7 +93,6 @@
     var date = preDate.split('y-')[1];
     var preTime = $('.time-selected').html();
     var time = preTime; // 注意这里的截断可能有问题
-    console.log(date + ' ' + time);
     $('.calendar-whole-wrapper').hide();
     $('.calendar-selector').val(date + ' ' + time);
     $('.calendar-selector-wrapper').show();
@@ -105,7 +104,6 @@
   });
 
   // 日历根据后台传输的reservationTime来改动日历
-  console.log(cleanObj.reservationTime);
   var reservationTime = cleanObj.reservationTime;
 
   clndrDate(reservationTime);
@@ -204,5 +202,32 @@
     var evt = e || window.event;
     var target = evt.target || evt.srcElement;
     $(target).parent().remove();
+  });
+
+  // 预约
+  $('#reservation').on('click', function (e) {
+    var reservers = [];
+    var identities = $('.identity');
+    var len = identities.length;
+    for (var i = 0; i < len; i++) {
+      reservers.push(identities[i].id);
+    }
+    var timeId = $('.time-selected').attr('id');
+    if (!reservers.length || !timeId) {
+      alert('预约信息不完整！');
+      return;
+    }
+
+    $.ajax({
+      type: 'post',
+      dataType: 'json',
+      data: { reservers: reservers, timeId: timeId },
+      url: '/' + user_id + '/reservation',
+      success: function success(mes) {
+        if (mes.success) {
+          alert('预约成功，请前往公众号我的预约中查看');
+        }
+      }
+    });
   });
 })(cleanObj);

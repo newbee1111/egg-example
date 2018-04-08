@@ -8,46 +8,10 @@
   <link rel="styleSheet" href="/public/css/bootstrap.min.css">
   <link rel="styleSheet" href="/public/css/common.css">
   <link rel="styleSheet" href="/public/css/reservation.css">
-  <title>Document</title>
+  <title>预约</title>
 </head>
 
 <body>
-  <!--<h1>
-    欢迎您，手机号为<%= user.cellphone %>的用户
-  </h1>
-  <button type="button" id="myReservation">我的预约</button>
-  <a href="/<%=user.id%>/identityOperatePage" id="viewAllId">修改我已绑定的身份证</a>
-  <h3>选择预约时间</h3>
-  <select id="timeSelection">
-    <option value="0">请选择预约时间</option>
-    <%for(var j=0; j<reservationTime.length; j++){%>
-      <option value="<%=reservationTime[j].id%>"><%=reservationTime[j].time%> 剩余可以预约人数 <%= reservationTime[j].number%></option>
-    <%}%>  
-  </select>
-  <div id="<%= mainIdentity.id%>">
-    <input type="checkbox" name="reservation">
-    <span>主身份证为：</span> 
-    <span id="mainIdentityShow"><%= mainIdentity.identity_card%></span> 
-    <span>证件姓名为：</span> 
-    <span id="mainFullNameShow"><%= mainIdentity.full_name%></span> 
-    <span>证件种类为：</span> 
-    <span id="mainTypeShow"><%= mainIdentity.identity_card_type%></span> 
-  </div>
-  <h3>您已绑定的同行者身份证为：</h3>
-  <div id="subIdentityGroup">
-    <%for (var i=0; i<subIdentities.length;i++){%>
-      <div class="subId" id="<%= subIdentities[i].id%>">
-        <input type="checkbox" name="reservation">
-        <span>身份证为：</span> 
-        <span><%= subIdentities[i].identity_card%></span> 
-        <span>证件姓名为：</span> 
-        <span><%= subIdentities[i].full_name%></span> 
-        <span>证件种类为：</span> 
-        <span><%= subIdentities[i].identity_card_type%></span>
-      </div>
-    <%}%>
-  </div>
-  <button type="button" id="reserve" class="primary">预约</button>-->
   <div class="container">
     <h1>预约</h1>
     <p class="white-font intro">请先预约参观时间，然后填写游客的身份证号</p>
@@ -132,8 +96,8 @@
       </div>
     </div>
     <div class='footer-panel'>
-      <span>
-        <span>下一步</span><i class="material-icons">keyboard_arrow_right</i>
+      <span id="reservation">
+        <span>预约</span><i class="material-icons">keyboard_arrow_right</i>
       </span>
     </div>
   </div>

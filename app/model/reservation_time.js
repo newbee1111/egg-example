@@ -26,7 +26,7 @@ module.exports = app => {
     const avail = new Date();
     const { year, month, day } = analizeTime(avail);
     const avail_time = `${year}-${month}-${day}`;
-    const date = `${year}-${month}-${day + 6}`;
+    const date = `${year}-${month}-${Number(day) + 6}`;
     const result = yield this.findAll(
       {
         where: {
