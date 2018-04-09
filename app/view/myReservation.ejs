@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>预约记录</title>
   <link rel="styleSheet" href="/public/css/bootstrap.min.css">
   <link rel="styleSheet" href="/public/css/common.css">
   <link rel="styleSheet" href="/public/css/myReservation.css">
@@ -13,14 +13,14 @@
 
 <body>
   <div class="container">
-    <p class='reservation-title'>当前预约</p>
+    <p class='reservation-title current-title'>当前预约</p>
     <%if (!currentReservations.length){%>
     <div class="empty-wrapper">
       <span>暂无预约记录...</span>
     </div>
     <%}else{%>
       <% for(var i = 0; i < currentReservations.length; i++){%>
-        <div class="identity-list-wrapper">
+        <div class="identity-list-wrapper current-list">
         <div class="left-icon-wrapper">
           <div class="left-bottom-inner-radius"></div>
           <div class="right-bottom-inner-radius"></div>
@@ -39,15 +39,15 @@
                 <%= currentReservations[i].reservers[j].bk_visitor_identity.identity_card%>
               </div>
             </div>
-            <i class="material-icons float-right" data-target="<%= currentReservations[i].id%>" id="<%= currentReservations[i].reservers[j].identity_id%>">cancel_copy</i>
+            <i class="material-icons float-right cancel-icon" data-target="<%= currentReservations[i].id%>" id="<%= currentReservations[i].reservers[j].identity_id%>">cancel_copy</i>
           </div>
         <%}%>
         </div>
         <div class="add-wrapper cancel-wrapper" id="<%= currentReservations[i].id%>">
           <div class="left-top-inner-radius"></div>
           <div class="right-top-inner-radius"></div>
-          <i class="material-icons left-icon">clear</i>
-          <span class="add-visitor">取消预约</span>
+          <i class="material-icons left-icon cancel-wrapper" id="<%= currentReservations[i].id%>">clear</i>
+          <span class="add-visitor cancel-wrapper" id="<%= currentReservations[i].id%>">取消预约</span>
         </div>
       </div>
       <%}%>
@@ -66,7 +66,7 @@
           <input class="calendar-selector history-time" readonly type="text" name="dateTime" value="<%= historyReservations[m].timeStr%>"/>
         </div>
         <div id="subIdentities">
-        <%for (var n = 0; n < historyReservations[n].reservers.length; n++) {%>
+        <%for (var n = historyReservations[m].reservers.length-1; n>=0; n--) {%>
           <div class="identity history-border">
             <i class="material-icons float-left">person copy</i>
             <div class="identity-wrapper">

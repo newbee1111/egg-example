@@ -52,6 +52,7 @@ describe('test service /app/service/reservation.js', async () => {
       timeId,
       testObj.user
     );
+
     expect(result.success).to.be.equal(false);
     expect(result.message).to.be.equal('该时段的预约人数已达上限');
     expect(result).to.not.include.keys('reservation');
@@ -79,9 +80,12 @@ describe('test service /app/service/reservation.js', async () => {
     const result = yield ctx.service.reservation.getUserAllReservations(
       user_id
     );
-
-    expect(result.length).to.be.equal(1);
-    expect(result[0]).to.include.keys('id', 'reservation_number', 'reservers');
+    expect(result.currentReservations.length).to.be.equal(1);
+    expect(result.currentReservations[0]).to.include.keys(
+      'id',
+      'reservation_number',
+      'reservers'
+    );
   });
 
   it('[reservation service] cancelReservation', function* () {
@@ -91,8 +95,8 @@ describe('test service /app/service/reservation.js', async () => {
       user_id
     );
 
-    expect(reservations.length).to.be.equal(1);
-    const { id: reservation_id } = reservations[0];
+    expect(reservations.currentReservations.length).to.be.equal(1);
+    const { id: reservation_id } = reservations.currentReservations[0];
     const result = yield ctx.service.reservation.cancelReservation(
       reservation_id
     );

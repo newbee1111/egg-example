@@ -43,33 +43,43 @@ class ReservationService extends Service {
     const currentReservations = [];
     const historyReservations = [];
     reservationsArr.forEach(item => {
-      const { bk_visitor_reservation_time: time } = item;
+      const { bk_visitor_reservation_time: time, is_deleted } = item;
       const { date, time_end, time_start } = time;
       const dateArr = date.split('-');
-      const year = dateArr[0];
-      const month = dateArr[1];
-      const day = dateArr[2];
+      const [ year, month, day ] = [ ...dateArr ];
       const hourArr = time_end.split(':');
-      const hour = hourArr[0];
-      const min = hourArr[1];
+      const [ hour, min ] = [ ...hourArr ];
       const reformedDate = reformTime({ year, month, day, hour, min });
       item.timeStr = `${date} ${time_start}~${time_end}`;
-      if (reformedDate >= new Date()) currentReservations.push(item);
-      else historyReservations.push(item);
+      if (reformedDate >= new Date() && !is_deleted) {
+        currentReservations.push(item);
+      } else historyReservations.push(item);
     });
 
     return { currentReservations, historyReservations };
   }
 
+  * cancelReservationPerson(reservation_id, reserver_id, user_id) {
+    const ReservationModel = this.app.model.Reservation;
+    const result = yield ReservationModel.removeReservationPerson(
+      reservation_id,
+      reserver_id,
+      user_id
+    );
+    const { success } = result;
+    if (!success) return { success, message: '预约开始前一天之后无法取消预约' };
+    return { success, message: '取消预约成功' };
+  }
+
   * cancelReservation(user_id, reservation_id) {
     const ReservationModel = this.app.model.Reservation;
-
     const result = yield ReservationModel.removeReservation(
       user_id,
       reservation_id
     );
-
-    return result;
+    const { success } = result;
+    if (!success) return { success, message: '预约开始前一天之后无法取消预约' };
+    return { success, message: '取消预约成功' };
   }
 }
 

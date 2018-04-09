@@ -36,7 +36,6 @@ module.exports = app => {
     });
     reserveList = arrayToJSON(reserveList);
     const isReserved = yield ReservationModel.checkTime(reserveList);
-
     return isReserved;
   };
 

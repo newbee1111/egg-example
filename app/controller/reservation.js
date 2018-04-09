@@ -43,11 +43,23 @@ class ReservationController extends Controller {
       user_id
     );
     const { currentReservations, historyReservations } = result;
+    console.log(result);
     yield this.ctx.render('myReservation.ejs', {
       user,
       currentReservations,
       historyReservations,
     });
+  }
+  * cancelReservationPerson() {
+    const { user } = this.ctx;
+    const { id: user_id } = user;
+    const { reservation_id, reserver_id } = this.ctx.request.body;
+    const result = yield this.ctx.service.reservation.cancelReservationPerson(
+      reservation_id,
+      reserver_id,
+      user_id
+    );
+    this.ctx.response.body = result;
   }
   * cancelReservation() {
     const { user } = this.ctx;

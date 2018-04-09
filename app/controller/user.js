@@ -58,7 +58,7 @@ class UserController extends Controller {
   // }
 
   * getWXinfo() {
-    const appId = 'Your appId';
+    const appId = 'Your AppId';
     this.ctx.response.body = { appId };
   }
 
