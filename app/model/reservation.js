@@ -37,7 +37,6 @@ module.exports = app => {
     });
     reservationTime = arrayToJSON(reservationTime, true);
     const res = reservationTime.bk_visitor_reservation_time;
-    console.log(res);
     const { date, time_end } = res;
     const dateArr = date.split('-');
     const year = dateArr[0];
@@ -108,8 +107,9 @@ module.exports = app => {
     const ReservationModel = app.model.Reservation;
     let reservation = yield ReservationModel.findAll({
       where: { id: reservation_id },
+      include: [{ model: app.model.ReservationTime }],
     });
-    reservation = arrayToJSON(reservation);
+    reservation = arrayToJSON(reservation, true);
     const { date, time_start } = reservation.bk_visitor_reservation_time;
     const dateArr = date.split('-');
     const [ year, month, day ] = [ ...dateArr ];
@@ -123,10 +123,11 @@ module.exports = app => {
   };
 
   const checkLastPerson = function* (reservation_id) {
-    let reservation = yield this.findAll({
-      id: reservation_id,
+    const ReservationModel = app.model.Reservation;
+    let reservation = yield ReservationModel.findAll({
+      where: { id: reservation_id },
     });
-    reservation = arrayToJSON(reservation);
+    reservation = arrayToJSON(reservation, true);
     const { reservation_number } = reservation;
     if (reservation_number === 1) return true;
     return false;
@@ -137,9 +138,10 @@ module.exports = app => {
     reserver_id,
     user_id
   ) {
-    const reservation = canDeleteReservation(reservation_id);
+    const reservation = yield canDeleteReservation(reservation_id);
     if (!reservation) return { success: false };
-    if (checkLastPerson(reservation_id)) {
+    const isLast = yield checkLastPerson(reservation_id);
+    if (isLast) {
       yield this.removeReservation(user_id, reservation_id);
       return { success: true };
     }

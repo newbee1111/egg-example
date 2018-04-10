@@ -101,6 +101,6 @@ describe('test service /app/service/reservation.js', async () => {
       reservation_id
     );
 
-    expect(result).to.be.deep.equal({ success: true });
+    expect(result).to.be.deep.equal({ success: true, message: '取消预约成功' });
   });
 });

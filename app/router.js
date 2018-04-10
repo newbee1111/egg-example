@@ -70,6 +70,12 @@ module.exports = app => {
     validateSession,
     controller.reservation.cancelReservation
   );
+  router.post(
+    '/:id/removeReservationPerson',
+    sendQueue,
+    validateSession,
+    controller.reservation.cancelReservationPerson
+  );
   // 公共部分，清除存储于redis中的session
   router.post(
     '/:id/cleanSession',

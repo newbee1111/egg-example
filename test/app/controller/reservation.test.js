@@ -74,6 +74,6 @@ describe('test controller /app/controller/reservation', () => {
     result = result.toJSON();
     const body = JSON.parse(result.text);
     expect(result.status).to.be.equal(200);
-    expect(body).to.be.deep.equal({ success: true });
+    expect(body).to.be.deep.equal({ success: true, message: '取消预约成功' });
   });
 });

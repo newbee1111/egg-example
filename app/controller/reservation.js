@@ -43,7 +43,6 @@ class ReservationController extends Controller {
       user_id
     );
     const { currentReservations, historyReservations } = result;
-    console.log(result);
     yield this.ctx.render('myReservation.ejs', {
       user,
       currentReservations,
